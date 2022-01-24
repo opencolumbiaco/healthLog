@@ -1,0 +1,159 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: @font;
+    padding: .5em;
+    font-size: 1.2em;
+}
+table, th, td {
+    border: 1px solid @border;
+
+    a {
+        color: @font;
+        text-decoration: none;
+    }
+}
+table {
+    width: 85%;
+    margin: .5em;
+    background-color: @altbg;
+}
+th, td {
+    padding: .5em;
+    text-align: center;
+    font-size: 1.2em;
+}
+td {
+    img {
+        max-width: 65px;
+    }
+}
+
+@bg: #076e77;
+@font: #e2e2cc;
+@border: #9b0487;
+@altborder: #47023e;
+@altbg: #076e7781;
+@mood: #3fcad8;
+
+body {
+    .flexcolumn();
+    background-image: url("https://www.transparenttextures.com/patterns/xv.png");
+    background-color: @bg;
+    color: @font;
+
+    header {
+        .flexcolumn();
+
+        nav {
+            .flexrow();
+
+
+            button {
+                background-color: @border;
+                padding: .5em;
+            }
+        }
+    }
+    .messages {
+        background-color: #7e3737;
+    }
+    main {
+        .flexcolumn();
+
+        button {
+            background-color: @border;
+            padding: .5em;
+            margin: 1em;
+        }
+        .collapsible {
+            background-color: @border;
+            color: @font;
+            cursor: pointer;
+            padding: 18px;
+            width: 50%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+        }
+        .active, .collapsible:hover {
+            background-color: @font;
+            color: @altborder;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: @altborder;
+        }
+
+        .row {
+            .flexrow();
+
+            button {
+                background-color: @border;
+                padding: .5em;
+                margin: 1em;
+            }
+
+            form {
+                .flexcolumn();
+                padding: 1em;
+                margin: 1em;
+                border: 3px groove @border;
+
+            }
+        }
+        form {
+            .flexcolumn();
+            padding: 1em;
+            margin: 1em;
+            border: 3px groove @border;
+
+            section {
+                .flexrow();
+                padding: .5em;
+                margin: .5em;
+
+                label {
+                    margin: 0 1em;
+                }
+
+                input[type="range"] {
+                    width: 200px;
+                    height: 6px;
+                    -webkit-appearance:none;
+                    background-color: white;
+                    border-radius: 6px;
+                    outline: none;
+                }
+                input[type="range"]::-webkit-slider-thumb {
+                    -webkit-appearance:none;
+                    height: 30px;
+                    width: 30px;
+                    background-color: @mood;
+                    border-radius: 50%;
+                    box-shadow: 10px 15px 10px #00000033;
+                }
+                .material-icons {
+                    font-size: 50px;
+                    color: @mood;
+                    margin: 0 1em;
+                }
+            }
+        }
+    }
+}

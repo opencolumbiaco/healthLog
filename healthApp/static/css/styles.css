@@ -1,0 +1,165 @@
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: #e2e2cc;
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+table,
+th,
+td {
+  border: 1px solid #9b0487;
+}
+table a,
+th a,
+td a {
+  color: #e2e2cc;
+  text-decoration: none;
+}
+table {
+  width: 85%;
+  margin: 0.5em;
+  background-color: #076e7781;
+}
+th,
+td {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.2em;
+}
+td img {
+  max-width: 65px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://www.transparenttextures.com/patterns/xv.png");
+  background-color: #076e77;
+  color: #e2e2cc;
+}
+body header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body header nav button {
+  background-color: #9b0487;
+  padding: 0.5em;
+}
+body .messages {
+  background-color: #7e3737;
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body main button {
+  background-color: #9b0487;
+  padding: 0.5em;
+  margin: 1em;
+}
+body main .collapsible {
+  background-color: #9b0487;
+  color: #e2e2cc;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+body main .active,
+body main .collapsible:hover {
+  background-color: #e2e2cc;
+  color: #47023e;
+}
+body main .content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #47023e;
+}
+body main .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body main .row button {
+  background-color: #9b0487;
+  padding: 0.5em;
+  margin: 1em;
+}
+body main .row form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+  border: 3px groove #9b0487;
+}
+body main form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+  border: 3px groove #9b0487;
+}
+body main form section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+body main form section label {
+  margin: 0 1em;
+}
+body main form section input[type="range"] {
+  width: 200px;
+  height: 6px;
+  -webkit-appearance: none;
+  background-color: white;
+  border-radius: 6px;
+  outline: none;
+}
+body main form section input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 30px;
+  width: 30px;
+  background-color: #3fcad8;
+  border-radius: 50%;
+  box-shadow: 10px 15px 10px #00000033;
+}
+body main form section .material-icons {
+  font-size: 50px;
+  color: #3fcad8;
+  margin: 0 1em;
+}
