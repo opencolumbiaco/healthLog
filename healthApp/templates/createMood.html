@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <h1>Health Log</h1>
+        <h1>Mental Well-Being Health Log</h1>
         <nav>
             {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
         </nav>
@@ -28,7 +28,7 @@
             </section>
             {% endif %}
         </div>
-        <h1>{{user.firstName}} log your current Mood</h1>
+        <h1>{{user.firstName}} log your current symptom(s) level(s)</h1>
         <form action="/createMood/" method='post'>
             {% csrf_token %}
             <section>
@@ -62,14 +62,14 @@
                 </select>
             </section>
             <section>
-                <label for="log">Add to Log</label>
+                <label for="log">Chose log to add this to</label>
                 <select name="log">
                     {% for log in logs %}
                         <option value="{{log.id}}">{{log.title}}</option>
                     {% endfor %}
                 </select>
             </section>
-            <button>Add Mood</button>
+            <button>Add Symptom Record</button>
         </form>
     </main>
     <footer>

@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <h1>Your Health Log {{user.firstName}}</h1>
+        <h1>Your Mental Well-Being Health Log {{user.firstName}}</h1>
         <nav>
             {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
         </nav>
@@ -33,9 +33,9 @@
         <ol>
             <li>Create the base log for the day</li>
             <li>Look at the current list of symptoms and add yours if needed</li>
-            <li>Then Log your mood
+            <li>Then Log your symptom(s) level(s) for the day
                 <ul>
-                    <li>You can add multiple moods to 1 log entry so feel free to so just that.  </li>
+                    <li>You can add multiple "moods" to 1 log entry so feel free to so just that.  </li>
                 </ul>
             </li>
         </ol>
