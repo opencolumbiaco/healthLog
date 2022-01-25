@@ -17,7 +17,7 @@
             {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
         </nav>
         <nav>
-            {% block adminMenu %} {% include 'adminMenu.html' %} {% endblock adminMenu %}
+            {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock adminMenu %}
         </nav>
     </header>
     <main>
@@ -51,7 +51,7 @@
                     {% else %}
                         <td>No</td>
                     {% endif %}
-                    <td></td>
+                    <td><a href="/user/{{aUser.id}}/delete/">Delete User</a></td>
                 </tr>
             {% endfor %}
         </table>

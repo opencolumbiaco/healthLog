@@ -32,20 +32,12 @@
         <form action="/createMood/" method='post'>
             {% csrf_token %}
             <section>
-                <label for="tag">Time of Day</label>
-                <select name="tag">
-                    <option value="pre-breakfast">Pre-Breakfast</option>
-                    <option value="post-breakfast">Post-Breakfast</option>
-                    <option value="pre-lunch">Pre-Lunch</option>
-                    <option value="post-lunch">Post-Lunch</option>
-                    <option value="pre-dinner">Pre-Dinner</option>
-                    <option value="post-dinner">Post-Dinner</option>
-                    <option value="bedtime">Bedtime</option>
-                </select>
+                <label for="tag">Title/Description</label>
+                <input type="text" name="tag">
             </section>
             <section>
                 <label for="date">Date</label>
-                <input type="date" name="date">
+                <input type="datetime-local" name="date">
             </section>
             <section>
                 <i class="material-icons" id="emoji">
@@ -68,6 +60,9 @@
                         <option value="{{log.id}}">{{log.title}}</option>
                     {% endfor %}
                 </select>
+            </section>
+            <section>
+                <input type="hidden" name="user_id" value='{{user.id}}'>
             </section>
             <button>Add Symptom Record</button>
         </form>

@@ -79,6 +79,7 @@ class Mood(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     symptom = models.ForeignKey(Symptom, related_name='theSymptom', on_delete=CASCADE)
     log = models.ForeignKey(Log, related_name='theLog',on_delete=CASCADE, blank=True)
+    user = models.ForeignKey(User, related_name='UserMood', on_delete=CASCADE)
 
     def __str__(self):
         return self.date

@@ -34,7 +34,8 @@
             <tr>
                 <th>Time</th>
                 <th>Symptom</th>
-                <th>Rating 0-4</th>
+                <th>Rating</th>
+                <th>Action</th>
             </tr>
             {% for mood in moods %}
                 <tr>
@@ -57,6 +58,7 @@
                         <td><img src="{% static 'images/04.PNG'%}" alt="Great Mood"></td>
                     {% endif %}
                 {% endif %}
+                <td><a href="/mood/{{mood.id}}/delete/">Delete Record</a></td>
                 </tr>
             {% endfor %}
         </table>
