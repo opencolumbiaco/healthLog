@@ -47,9 +47,6 @@ class Symptom(models.Model):
     symptom = models.CharField(max_length=255)
     info = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.symptom
-
 class Log(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
@@ -81,5 +78,4 @@ class Mood(models.Model):
     log = models.ForeignKey(Log, related_name='theLog',on_delete=CASCADE, blank=True)
     user = models.ForeignKey(User, related_name='UserMood', on_delete=CASCADE)
 
-    def __str__(self):
-        return self.date
+

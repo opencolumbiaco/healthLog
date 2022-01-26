@@ -18,7 +18,7 @@ urlpatterns = [
     path('log/<int:log_id>/update/', views.updateLog),
     path('log/<int:log_id>/delete/', views.deleteLog),
     path('symptom/', views.symptoms),
-    path('symptom/create', views.createSymptom),
+    path('symptom/create/', views.createSymptom),
     path('symptom/<int:symptom_id>/update/', views.updateSymptom),
     path('symptom/<int:symptom_id>/delete/', views.deleteSymptom),
     path('user/dashboard/', views.profileDash),

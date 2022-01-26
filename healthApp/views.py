@@ -115,7 +115,7 @@ def createSymptom(request):
         info=request.POST['info'],
     )
     messages.error(request, 'Symptom Created')
-    return redirect('/symptoms/')
+    return redirect('/symptom/')
 
 def createLog(request):
     Log.objects.create(
@@ -202,7 +202,7 @@ def deleteSymptom(request, symptom_id):
     toDelete=Symptom.objects.get(id=symptom_id)
     toDelete.delete()
     messages.error(request, 'Symptom Removed')
-    return redirect('/symptoms/')
+    return redirect('/symptom/')
 
 def deleteLog(request, log_id):
     toDelete=Log.objects.get(id=log_id)
@@ -269,4 +269,19 @@ def profileDash(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
-        pass
+        userMoods = Mood.objects.filter(user_id=request.session['user_id'])
+        symptoms = Symptom.objects.all().values()
+        labels = []
+        moods = []
+        dataSet = []
+        for row in userMoods:
+            labels.append(row.symptom_id)
+        for row in userMoods:
+            moods.append(row.mood)
+        context = {
+            'user': user,
+            'symptoms': symptoms,
+            'labels': labels,
+            'moods': moods,
+        }
+        return render(request, 'profile/profileData.html', context)
