@@ -3,12 +3,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .flexcolumn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 a {
   text-decoration: none;
@@ -46,6 +48,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   background-image: url("https://www.transparenttextures.com/patterns/xv.png");
   background-color: #076e77;
   color: #e2e2cc;
@@ -55,12 +58,14 @@ body header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 body header nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 body header nav button {
   background-color: #9b0487;
@@ -74,6 +79,7 @@ body main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 body main button {
   background-color: #9b0487;
@@ -107,6 +113,7 @@ body main .row {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 body main .row button {
   background-color: #9b0487;
@@ -118,6 +125,7 @@ body main .row form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1em;
   margin: 1em;
   border: 3px groove #9b0487;
@@ -127,6 +135,7 @@ body main form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1em;
   margin: 1em;
   border: 3px groove #9b0487;
@@ -136,6 +145,7 @@ body main form section {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   padding: 0.5em;
   margin: 0.5em;
 }
@@ -162,4 +172,11 @@ body main form section .material-icons {
   font-size: 50px;
   color: #3fcad8;
   margin: 0 1em;
+}
+body main table tr td .miniForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from healthApp.models import *
 import bcrypt
+from .special import ADMINKEY
 
 def index(request):
     if 'user_id'  not in request.session:
@@ -61,7 +62,7 @@ def register(request):
         password = hashedPw
     )
     request.session['user_id'] = newUser.id
-    if request.POST['adminCode'] == 'WolvesDragonFlies&Bees':
+    if request.POST['adminCode'] == ADMINKEY:
         toUpdate = User.objects.get(id=request.session['user_id'])
         toUpdate.level=9
         toUpdate.save()
@@ -113,7 +114,8 @@ def createSymptom(request):
         symptom=request.POST['symptom'],
         info=request.POST['info'],
     )
-    return redirect('/symptoms/')
+    messages.error(request, 'Symptom Created')
+    return redirect('/symptom/')
 
 def createLog(request):
     Log.objects.create(
@@ -121,6 +123,7 @@ def createLog(request):
         content=request.POST['content'],
         author=User.objects.get(id=request.session['user_id']),
     )
+    messages.error(request, 'Log Created')
     return redirect('/')
 
 def createMood(request):
@@ -130,7 +133,9 @@ def createMood(request):
         mood=request.POST['mood'],
         symptom_id=request.POST['symptom'],
         log_id=request.POST['log'],
+        user_id=request.POST['user_id']
     )
+    messages.error(request, 'Symptom Entry Created')
     return redirect('/')
 
 def viewLog(request, log_id):
@@ -153,33 +158,69 @@ def viewLog(request, log_id):
         return render(request, 'viewLog.html', context)
 
 def editSymptom(request, symptom_id):
-    pass
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        symptom = Symptom.objects.get(id=symptom_id)
+        content = {
+            'user': user,
+            'symptom': symptom,
+        }
+        return render(request, 'editSymptom.html', context)
 
-
-def editMood(request, mood_id):
-    pass
+def updateMood(request, mood_id):
+    toUpdate=Mood.objects.get(id=mood_id)
+    toUpdate.tag = request.POST['tag']
+    toUpdate.date = request.POST['date']
+    toUpdate.mood = request.POST['mood']
+    toUpdate.symptom = request.POST['symptom']
+    toUpdate.log_id = request.POST['log']
+    toUpdate.user_id = request.POST['user_id']
+    toUpdate.save()
+    messages.error(request, 'Symptom Entry Updated')
+    return redirect('/')
 
 def updateSymptom(request, symptom_id):
-    pass
+    toUpdate=Symptom.objects.get(id=symptom_id)
+    toUpdate.symptom = request.POST['symptom']
+    toUpdate.info = request.POST['info']
+    toUpdate.save()
+    messages.error(request, 'Symptom Updated')
+    return redirect('/symptoms/')
 
 def updateLog(request, log_id):
     toUpdate=Log.objects.get(id=log_id)
     toUpdate.title = request.POST['title']
     toUpdate.content = request.POST['content']
     toUpdate.save()
+    messages.error(request, 'Log Updated')
     return redirect(f'/log/{toUpdate.id}/view/')
 
-def updateMood(request, mood_id):
-    pass
-
 def deleteSymptom(request, symptom_id):
-    pass
+    toDelete=Symptom.objects.get(id=symptom_id)
+    toDelete.delete()
+    messages.error(request, 'Symptom Removed')
+    return redirect('/symptom/')
 
 def deleteLog(request, log_id):
-    pass
+    toDelete=Log.objects.get(id=log_id)
+    toDelete.delete()
+    messages.error(request, 'Log Removed')
+    return redirect('/')
 
 def deleteMood(request, mood_id):
-    pass
+    toDelete=Mood.objects.get(id=mood_id)
+    toDelete.delete()
+    messages.error(request, 'Symptom Entry Removed')
+    return redirect('/')
+
+def deleteUser(request, user_id):
+    toDelete=User.objects.get(id=user_id)
+    toDelete.delete()
+    messages.error(request, 'User Removed')
+    return redirect('/theAdmin/')
 
 def theAdmin(request):
     if 'user_id' not in request.session:
@@ -200,7 +241,7 @@ def theAdmin(request):
                 'userCount': userCount,
             }
             print("log count: ", logCount, "mood count: ", moodCount, "symptom count: ", symptomCount)
-            return render(request, 'theAdmin.html', context)
+            return render(request, 'admin/theAdmin.html', context)
         else:
             messages:error(request, "Please log in with an admin account")
             return redirect('/')
@@ -217,7 +258,30 @@ def adminUsers(request):
                 'user': user,
                 'users': users,
             }
-            return render(request, 'allUsers.html', context)
+            return render(request, 'admin/allUsers.html', context)
         else:
             messages:error(request, "Please log in with an admin account")
             return redirect('/')
+
+def profileDash(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else: 
+        user = User.objects.get(id=request.session['user_id'])
+        userMoods = Mood.objects.filter(user_id=request.session['user_id'])
+        symptoms = Symptom.objects.all().values()
+        labels = []
+        moods = []
+        dataSet = []
+        for row in userMoods:
+            labels.append(row.symptom_id)
+        for row in userMoods:
+            moods.append(row.mood)
+        context = {
+            'user': user,
+            'symptoms': symptoms,
+            'labels': labels,
+            'moods': moods,
+        }
+        return render(request, 'profile/profileData.html', context)

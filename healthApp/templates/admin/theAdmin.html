@@ -17,7 +17,7 @@
             {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
         </nav>
         <nav>
-            {% block adminMenu %} {% include 'adminMenu.html' %} {% endblock adminMenu %}
+            {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock adminMenu %}
         </nav>
     </header>
     <main>
@@ -30,31 +30,25 @@
             </section>
             {% endif %}
         </div>
-        <h1>All Users</h1>
+        <h1>Welcome to the Admin panel {{user.firstName}}</h1>
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Admin</th>
-                <th>Actions</th>
+                <th>Document</th>
             </tr>
-            {% for aUser in users %}
-                <tr>
-                    <td>{{aUser.firstName}}</td>
-                    <td>{{aUser.lastName}}</td>
-                    <td>{{aUser.username}}</td>
-                    <td>{{aUser.email}}</td>
-                    {% if aUser.level == 9 %}
-                        <td>Yes</td>
-                    {% else %}
-                        <td>No</td>
-                    {% endif %}
-                    <td></td>
-                </tr>
-            {% endfor %}
+            <tr>
+                <td><a href="https://docs.google.com/spreadsheets/d/16jGr-9K6GeY76xV-2dNBwhszFy8-3Eyi8kjnkL70BhY/edit?usp=sharing">Improvement Form CSV</a></td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.google.com/spreadsheets/d/1Skcg_iopbtBcmehkbFyvJrNPWWY9R6lBzRgom_OqYbs/edit?usp=sharing">Site Bugs Form CSV</a></td>
+            </tr>
         </table>
+        <button type="button" class="collapsible">Counts</button>
+        <div class="content">
+            <h3># of Logs Created: {{logCount}}</h3>
+            <h3># of Recorded Symptoms Created: {{moodCount}}</h3>
+            <h3># of Symptoms Created: {{symptomCount}}</h3>
+            <h3># of Users: {{userCount}}</h3>
+        </div>
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
