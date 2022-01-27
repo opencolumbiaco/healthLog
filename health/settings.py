@@ -82,20 +82,29 @@ WSGI_APPLICATION = 'health.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         # 'NAME': 'craftsnh_health',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'thehives_health',
+        'USER': 'root',
+        'PASSWORD': 'HoneyBee#4',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
 #         'NAME': 'DB',
-#         # 'USER': 'root',
 #         'USER': 'DB_USER',
-#         # 'PASSWORD': 'HoneyBee#4',
 #         'PASSWORD': 'DB_PASSWORD',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
