@@ -103,9 +103,9 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'mysql.connector.django',
-#         'NAME': 'DB',
-#         'USER': 'DB_USER',
-#         'PASSWORD': 'DB_PASSWORD',
+#         'NAME': 'thehives_health',
+#         'USER': 'thehives_home',
+#         'PASSWORD': 'CopperTone#21',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }

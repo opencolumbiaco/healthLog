@@ -32,7 +32,7 @@
             <button><a href="/log/">Add New Log</a></button>
             <button><a href="/mood/">Log Your Mood</a></button>
         </div>
-        <button><a href="#createSymptom">Add New Symptom</a></button>
+        <!-- <button><a href="#createSymptom">Add New Symptom</a></button> -->
         <table>
             <tr>
                 <th>Symptom</th>
@@ -60,7 +60,7 @@
                 </tr>
             {% endfor %}
         </table>
-        <form action="/symptom/create/" id='createSymptom' method='post'>
+        <!-- <form action="/symptom/create/" id='createSymptom' method='post'>
             {% csrf_token %}
             <section>
                 <label for="symptom">Symptom</label>
@@ -71,7 +71,7 @@
                 <textarea name="info" cols="30" rows="10"></textarea>
             </section>
             <button>Add Symptom</button>
-        </form>
+        </form> -->
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}

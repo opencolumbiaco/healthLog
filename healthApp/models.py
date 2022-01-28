@@ -46,6 +46,8 @@ def create_user_profile(sender, instance, created, **kwargs):
 class Symptom(models.Model):
     symptom = models.CharField(max_length=255)
     info = models.TextField(blank=True)
+    def __str__(self):
+        return self.symptom
 
 class Log(models.Model):
     title = models.CharField(max_length=255)

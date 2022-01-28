@@ -4,6 +4,7 @@ from healthApp.models import *
 import bcrypt
 from .special import ADMINKEY
 
+
 def index(request):
     if 'user_id'  not in request.session:
         return render(request, 'welcome.html')
@@ -269,19 +270,61 @@ def profileDash(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
-        userMoods = Mood.objects.filter(user_id=request.session['user_id'])
+        oneUser = user.id
+        moods = Mood.objects.filter(user_id=oneUser).all().values()
         symptoms = Symptom.objects.all().values()
-        labels = []
-        moods = []
-        dataSet = []
-        for row in userMoods:
-            labels.append(row.symptom_id)
-        for row in userMoods:
-            moods.append(row.mood)
+        GeneralHeadache = 0
+        Migraine = 0
+        Fatigue = 0
+        PanicAttack = 0
+        GeneralBackPain = 0
+        ChronicBackPain = 0
+        Depression = 0
+        Anxiety = 0
+        Fibromyalgia = 0
+        AchesNPains = 0
+        Other = 0
+        userMoods = []
+        for mood in moods:
+            for symptom in symptoms:
+                if mood['symptom_id'] == symptom['id']:
+                    userMoods.append(symptom['symptom'])
+        for ele in userMoods:
+            if (ele =='General Headache'):
+                GeneralHeadache = GeneralHeadache + 1
+            elif (ele == 'Fatigue'):
+                Fatigue = Fatigue + 1
+            elif (ele == 'Panic Attack'):
+                PanicAttack = PanicAttack + 1
+            elif (ele == 'General Back Pain'):
+                GeneralBackPain = GeneralBackPain + 1
+            elif (ele == 'Migraine'):
+                Migraine = Migraine + 1
+            elif (ele == 'Chronic Back Pain'):
+                ChronicBackPain = ChronicBackPain + 1
+            elif (ele == 'Depression'):
+                Depression = Depression + 1
+            elif (ele == 'Anxiety'):
+                Anxiety = Anxiety + 1
+            elif (ele == 'Fibromyalgia'):
+                Fibromyalgia = Fibromyalgia + 1
+            elif (ele == 'Aches and Pains'):
+                AchesNPains = AchesNPains + 1
+            else:
+                Other = Other + 1
         context = {
             'user': user,
-            'symptoms': symptoms,
-            'labels': labels,
             'moods': moods,
+            'generalHeadache': GeneralHeadache,
+            'migraine': Migraine,
+            'fatigue': Fatigue,
+            'panicAttack': PanicAttack,
+            'generalBack': GeneralBackPain,
+            'chronicBack': ChronicBackPain,
+            'depression': Depression,
+            'anxiety': Anxiety,
+            'fibro': Fibromyalgia,
+            'aches': AchesNPains,
+            'other': Other,
         }
         return render(request, 'profile/profileData.html', context)

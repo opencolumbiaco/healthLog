@@ -57,7 +57,9 @@
                 <label for="log">Chose log to add this to</label>
                 <select name="log">
                     {% for log in logs %}
-                        <option value="{{log.id}}">{{log.title}}</option>
+                        {% if log.author_id == user.id %}
+                            <option value="{{log.id}}">{{log.title}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </section>
