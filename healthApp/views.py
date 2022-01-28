@@ -189,7 +189,7 @@ def updateSymptom(request, symptom_id):
     toUpdate.info = request.POST['info']
     toUpdate.save()
     messages.error(request, 'Symptom Updated')
-    return redirect('/symptoms/')
+    return redirect('/symptom/')
 
 def updateLog(request, log_id):
     toUpdate=Log.objects.get(id=log_id)
