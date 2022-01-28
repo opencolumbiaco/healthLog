@@ -32,7 +32,9 @@
             <button><a href="/log/">Add New Log</a></button>
             <button><a href="/mood/">Log Your Mood</a></button>
         </div>
-        <!-- <button><a href="#createSymptom">Add New Symptom</a></button> -->
+        {% if user.level == 9 %}
+            <button><a href="#createSymptom">Add New Symptom</a></button>
+        {% endif %}
         <table>
             <tr>
                 <th>Symptom</th>
@@ -60,18 +62,20 @@
                 </tr>
             {% endfor %}
         </table>
-        <!-- <form action="/symptom/create/" id='createSymptom' method='post'>
-            {% csrf_token %}
-            <section>
-                <label for="symptom">Symptom</label>
-                <input type="text" name="symptom">
-            </section>
-            <section>
-                <label for="info">Info</label>
-                <textarea name="info" cols="30" rows="10"></textarea>
-            </section>
-            <button>Add Symptom</button>
-        </form> -->
+        {% if user.level == 9 %}
+            <form action="/symptom/create/" id='createSymptom' method='post'>
+                {% csrf_token %}
+                <section>
+                    <label for="symptom">Symptom</label>
+                    <input type="text" name="symptom">
+                </section>
+                <section>
+                    <label for="info">Info</label>
+                    <textarea name="info" cols="30" rows="10"></textarea>
+                </section>
+                <button>Add Symptom</button>
+            </form>
+        {% endif %}
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}
