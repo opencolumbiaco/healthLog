@@ -52,6 +52,7 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/xv.png");
   background-color: #076e77;
   color: #e2e2cc;
+  text-align: center;
 }
 body header {
   display: flex;
@@ -80,6 +81,18 @@ body main {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+body main .desktop {
+  background-color: #0a929e70;
+  text-align: center;
+  color: #e2e2cc;
+  font-size: 1.2em;
+  border: 2px groove #9b0487;
+  padding: 0.5em;
+  margin: 1em;
+}
+body main .mobile {
+  display: none;
 }
 body main button {
   background-color: #9b0487;
@@ -179,4 +192,41 @@ body main table tr td .miniForm {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+@media only screen and (max-width: 730px) {
+  body header nav {
+    width: 75%;
+  }
+  body main {
+    width: 75%;
+  }
+  body main .mobile {
+    display: flex;
+    background-color: #0a929e70;
+    text-align: center;
+    color: #e2e2cc;
+    font-size: 1.2em;
+    border: 2px groove #9b0487;
+    padding: 0.5em;
+    margin: 1em;
+  }
+  body main .desktop {
+    display: none;
+  }
+}
+@media only screen and (max-width: 530px) {
+  body main table tr td img {
+    max-width: 40px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  body main table tr td {
+    font-size: 0.8em;
+  }
+  body main table tr td a {
+    text-decoration: none;
+    color: #e2e2cc;
+    padding: 0.5em;
+    font-size: 0.8em;
+  }
 }

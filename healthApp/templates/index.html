@@ -14,9 +14,7 @@
 <body>
     <header>
         <h1>Your Mental Well-Being Health Log {{user.firstName}}</h1>
-        <nav>
-            {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
-        </nav>
+        {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
     <main>
         <div>

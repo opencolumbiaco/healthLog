@@ -44,17 +44,23 @@ td {
 }
 
 @bg: #076e77;
+@tablebg: #0a929e70;
 @font: #e2e2cc;
 @border: #9b0487;
 @altborder: #47023e;
 @altbg: #076e7781;
 @mood: #3fcad8;
 
+@730: ~"only screen and (max-width: 730px)";
+@530: ~"only screen and (max-width: 530px)";
+@480: ~"only screen and (max-width: 480px)";
+
 body {
     .flexcolumn();
     background-image: url("https://www.transparenttextures.com/patterns/xv.png");
     background-color: @bg;
     color: @font;
+    text-align: center;
 
     header {
         .flexcolumn();
@@ -74,6 +80,19 @@ body {
     }
     main {
         .flexcolumn();
+
+        .desktop {
+            background-color: @tablebg;
+            text-align: center;
+            color: @font;
+            font-size: 1.2em;
+            border: 2px groove @border;
+            padding: .5em;
+            margin: 1em;
+        }
+        .mobile {
+            display: none;
+        }
 
         button {
             background-color: @border;
@@ -161,6 +180,69 @@ body {
                 td {
                     .miniForm {
                         .flexrow();
+                    }
+                }
+            }
+        }
+    }
+}
+@media @730 {
+    body {
+        header {
+            nav {
+                width: 75%;
+            }
+        }
+        main {
+            width: 75%;
+
+            .mobile {
+                display: flex;
+                background-color: @tablebg;
+                text-align: center;
+                color: @font;
+                font-size: 1.2em;
+                border: 2px groove @border;
+                padding: .5em;
+                margin: 1em;
+            }
+            .desktop {
+                display: none;
+            }
+        }
+    }
+}
+
+@media @530 {
+    body {
+        main {
+            table {
+                tr {
+                    td {
+                        img {
+                            max-width: 40px;
+                        }
+                    }
+                };
+            }
+        }
+    }
+}
+
+@media @480 {
+    body {
+        main {
+            table {
+                tr {
+                    td {
+                        font-size: .8em;
+
+                        a {
+                            text-decoration: none;
+                            color: @font;
+                            padding: .5em;
+                            font-size: .8em;
+                        }
                     }
                 }
             }
