@@ -11,11 +11,11 @@ def createProfile(sender, instance, created, **kwargs):
 def saveProfile(sender, instance, **kwargs):
     instance.profile.save()
 
-@receiver(post_save, sender=Log)
-def createLog(sender, instance, created, **kwargs):
+@receiver(post_save, sender=Medication)
+def createMed(sender, instance, created, **kwargs):
     if created:
-        Upload.objects.create(log=instance)
+        Upload.objects.create(medication=instance)
 
-@receiver(post_save, sender=Log)
-def saveLog(sender, instance, **kwargs):
+@receiver(post_save, sender=Medication)
+def saveMed(sender, instance, **kwargs):
     instance.upload.save()
