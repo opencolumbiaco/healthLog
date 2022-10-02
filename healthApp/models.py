@@ -59,17 +59,6 @@ class Log(models.Model):
     def __str__(self):
         return self.title
 
-class Upload(models.Model):
-    log = models.OneToOneField(Log, unique=True, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profileImgs', default='bee.jpg')
-    def __str__(self):
-        return f'{self.note.log} Upload'
-
-def create_log_upload(sender, instance, created, **kwargs):
-    if created:
-        Log.objects.create(log=instance)
-        post_save.connect(create_log_upload, sender=Log)
-
 class Mood(models.Model):
     tag = models.CharField(max_length=255)
     date = models.DateTimeField()
