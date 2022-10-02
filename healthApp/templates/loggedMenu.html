@@ -3,17 +3,20 @@
 <body>
     {% block loggedMenu %}
         <nav>
-            <a href="/">Home</a>
-            <a href="/mood/">Log Symptoms</a>
-            <a href="/log/">Create New Log</a>
-            <a href="/symptom/">Symptom Bank</a>
-            <a href="https://forms.gle/7YqD8aWXsmccgR5y8" target="_blank">Site Improvements</a>
-            <a href="https://forms.gle/RbrL6cC8PjchBS396" target="_blank">Site Bugs</a>
-            <a href="/user/dashboard/">Profile Data</a>
-            {% if user.level == 9 %}
-                <a href="/theAdmin/">Admin</a>
-            {% endif %}
-            <button><a href="/logout/">Logout</a></button>
+            <a href="javascript:void(0);" class="icon" onclick="menu()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <nav id="myLinks">
+                <a href="/">Home</a>
+                <a href="/week/">Create new Week</a>
+                <!-- <a href="https://forms.gle/7YqD8aWXsmccgR5y8" target="_blank">Site Improvements</a> -->
+                <!-- <a href="https://forms.gle/RbrL6cC8PjchBS396" target="_blank">Site Bugs</a> -->
+                <a href="/user/dashboard/">Profile Data</a>
+                {% if user.level == 9 %}
+                    <a href="/theAdmin/">Admin</a>
+                {% endif %}
+                <a href="/logout/">Logout</a>
+            </nav>
         </nav>
     {% endblock loggedMenu %}
 </body>

@@ -57,6 +57,12 @@ body {
             margin: .5em;
         }
     }
+    .welcome {
+        background-color: @shadowBlue;
+        max-width: 95%;
+        border-radius: 10%;
+        padding: 1em;
+    }
     main {
         .flexcolumn();
 
@@ -118,11 +124,46 @@ body {
         button {
             font-size: 1em;
         }
+        .calendar {
+            margin: 1em;
+        }
+        .collapsible {
+            // background-color: @shadowBlue;
+            // color: @font;
+            cursor: pointer;
+            padding: 18px;
+            width: 50%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+        }
+        // .active, .collapsible:hover {
+        //     // background-color: @font;
+        //     color: @altborder;
+        // }
+        .content {
+            padding: 1em 18px;
+            display: none;
+            overflow: hidden;
+            background-color: @shadowBlue;
+
+            section {
+                .flexcolumn();
+                margin: 1em;
+            }
+        }
     }
     footer {
         .flexcolumn();
         padding: 1em;
         margin: 1em;
+        max-width: 95%;
+        
+        p {
+            max-width: 85%;
+            margin: .5em;
+        }
     }
 }
 @import './less/media.less';

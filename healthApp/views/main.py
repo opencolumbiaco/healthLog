@@ -2,18 +2,19 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from healthApp.models import *
 
-def symptoms(request):
+
+def addWeek(request):
     if 'user_id' not in request.session:
-        messages.error(request, "You need to be logged in")
+        message.error(request, "You need to be logged in")
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        symptoms = Symptom.objects.all().values()
+        weeks = Week.objects.all().values()
         context = {
             'user': user,
-            'symptoms': symptoms,
+            'weeks': weeks,
         }
-        return render(request, 'symptoms.html', context)
+        return render(request, 'createWeek.html', context)
 
 def addLog(request):
     if 'user_id' not in request.session:
@@ -40,6 +41,14 @@ def addMood(request):
             'logs': logs
         }
         return render(request, 'createMood.html', context)
+
+def createWeek(request):
+    Week.objects.create(
+        title=request.POST['title'],
+        writer=request.POST['writer_id'],
+    )
+    messages.error(request, 'Week Created')
+    return redirect('/log/')
 
 def createLog(request):
     Log.objects.create(
