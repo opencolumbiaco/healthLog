@@ -17,6 +17,13 @@ These items are being created
 - Example account - an account simply for non users to view exampls of what they can do
 - change to react native front end for mobile app creation
 
+## Potetial additions
+- Food Tracker
+- Sleep Logs
+
 
 # Asana Board
 - [Health Log](https://app.asana.com/0/1203086607338362/board)
+
+## Notes
+- User 1 = Auto admin
