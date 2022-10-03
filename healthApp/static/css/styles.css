@@ -33,6 +33,12 @@
 h1 {
   font-family: 'Volkhov', serif;
 }
+p {
+  font-size: 1.1em;
+  max-width: 50%;
+  padding: 0.2em;
+  margin: 1em;
+}
 * {
   text-align: center;
   margin: auto;
@@ -132,6 +138,12 @@ body div .messages {
   padding: 1em;
   margin: 0.5em;
 }
+body .welcome {
+  background-color: #C0DFEB66;
+  max-width: 95%;
+  border-radius: 10%;
+  padding: 1em;
+}
 body main {
   display: flex;
   flex-direction: column;
@@ -193,6 +205,40 @@ body main table tr td a {
 body main button {
   font-size: 1em;
 }
+body main .calendar {
+  margin: 1em;
+}
+body main .collapsible {
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+body main .content {
+  padding: 1em 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #C0DFEB66;
+}
+body main .content section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+body main .mainWeek table {
+  background-color: #F9E3FA66;
+}
+body main .mainWeek table .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 body footer {
   display: flex;
   flex-direction: column;
@@ -200,6 +246,11 @@ body footer {
   align-items: center;
   padding: 1em;
   margin: 1em;
+  max-width: 95%;
+}
+body footer p {
+  max-width: 85%;
+  margin: 0.5em;
 }
 @media only screen and (min-width: 650px) {
   body main .desktop {

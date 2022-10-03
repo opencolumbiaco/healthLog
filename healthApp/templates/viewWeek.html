@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
-    <title>Health Log</title>
+    <title>Health Log - {{log.title}}</title>
 </head>
 <body>
     <header>
+        <h1>Health & Mental Well-Being Log</h1>
         {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
-        {% block adminMenu %} {% include 'admin/adminMenu.html' %} {% endblock adminMenu %}
     </header>
     <div>
         {% if messages %}
@@ -27,31 +27,33 @@
         {% endif %}
     </div>
     <main>
-        <h1>All Users</h1>
+        <h1>{{week.title}}</h1>
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Admin</th>
+                <th>Day</th>
                 <th>Actions</th>
             </tr>
-            {% for aUser in users %}
-                <tr>
-                    <td>{{aUser.firstName}}</td>
-                    <td>{{aUser.lastName}}</td>
-                    <td>{{aUser.username}}</td>
-                    <td>{{aUser.email}}</td>
-                    {% if aUser.level == 9 %}
-                        <td>Yes</td>
-                    {% else %}
-                        <td>No</td>
+            {% for log in logs %}
+                {% if log.author_id == user.id %}
+                    {% if log.week_id == week.id %}
+                    <tr>
+                        <td>{{log.day}} {{log.title}}</td>
+                        <td></td>
+                    </tr>
                     {% endif %}
-                    <td><a href="/user/{{aUser.id}}/delete/">Delete User</a></td>
-                </tr>
+                {% endif %}
             {% endfor %}
         </table>
+
+        <h2>Update base week title</h2>
+        <form action="/week/{{week.id}}/update/" method='post'>
+            {% csrf_token %}
+            <section>
+                <label for="title">Title</label>
+                <input type="text" name="title" value='{{week.title}}'>
+            </section>
+            <button>Update Week</button>
+        </form>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" type='images/jpg' href="https://images.craftsnherbs.com/bee/IMG_0990.jpg">
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
     <title>Mental Well-Being Health Log</title>
@@ -15,8 +16,48 @@
     <header>
         {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
+    <div>
+        {% if messages %}
+        <section class='messages'>
+            {% for message in messages %}
+            <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </div>
     <main>
         <h1>Here is your data {{user.firstName}}</h1>
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{user.fullName}}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{user.username}}</td>
+            </tr>
+            <tr>
+                <th>Profile Image</th>
+                <td><img src="{{user.profile.image.url}}" alt="{{user.profile.image}}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{user.email}}</td>
+            </tr>
+            <tr>
+                <th>Diabetic</th>
+                <td>
+                    {% if user.profile.diabetic == 0 %}
+                        No
+                    {% else %}
+                        Yes
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><a href="/user/{{user.id}}/edit/">Edit Profile</a></td>
+            </tr>
+        </table>
         <h2>How often have you logged each symptom?</h2>
         {% if moods %}
             <table>

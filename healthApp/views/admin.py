@@ -2,6 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from healthApp.models import *
 
+def symptoms(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        symptoms = Symptom.objects.all().values()
+        context = {
+            'user': user,
+            'symptoms': symptoms,
+        }
+        return render(request, 'admin/symptoms.html', context)
 
 def createSymptom(request):
     Symptom.objects.create(
