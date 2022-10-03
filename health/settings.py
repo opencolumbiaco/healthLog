@@ -89,9 +89,20 @@ WSGI_APPLICATION = 'health.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'thehives_health',
+#         'USER': 'root',
+#         'PASSWORD': 'HoneyBee#4',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
         'NAME': 'thehives_health',
         'USER': 'root',
         'PASSWORD': 'HoneyBee#4',
@@ -99,17 +110,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'mysql.connector.django',
-#         'NAME': 'thehives_health',
-#         'USER': 'thehives_home',
-#         'PASSWORD': 'CopperTone#21',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
 
 
 # Password validation

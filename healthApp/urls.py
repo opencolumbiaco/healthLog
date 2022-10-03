@@ -13,6 +13,7 @@ urlpatterns = [
     # Week
     path('week/', views.addWeek),
     path('week/create/', views.createWeek),
+    path('week/<int:week_id>/view/', views.viewWeek),
     # Mood
     path('mood/', views.addMood),
     path('mood/create/', views.createMood),

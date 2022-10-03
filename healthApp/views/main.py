@@ -22,8 +22,10 @@ def addLog(request):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
+        weeks = Week.objects.all().values()
         context = {
             'user': user,
+            'weeks': weeks,
         }
         return render(request, 'createLog.html', context)
 
@@ -45,15 +47,17 @@ def addMood(request):
 def createWeek(request):
     Week.objects.create(
         title=request.POST['title'],
-        writer=request.POST['writer_id'],
+        writer=User.objects.get(id=request.session['user_id']),
     )
     messages.error(request, 'Week Created')
     return redirect('/log/')
 
 def createLog(request):
     Log.objects.create(
+        day = request.POST['day'],
         title=request.POST['title'],
         content=request.POST['content'],
+        week_id = request.POST['week'],
         author=User.objects.get(id=request.session['user_id']),
     )
     messages.error(request, 'Log Created')
@@ -70,6 +74,25 @@ def createMood(request):
     )
     messages.error(request, 'Symptom Entry Created')
     return redirect('/')
+
+def viewWeek(request, week_id):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        week = Week.objects.get(id=week_id)
+        logs = Log.objects.all().values()
+        moods = Mood.objects.all().values()
+        symptoms = Symptom.objects.all().values()
+        context = {
+                'user': user,
+                'week': week,
+                'logs': logs,
+                'moods': moods,
+                'symptoms': symptoms,
+            }
+        return render(request, 'viewWeek.html', context)
 
 def viewLog(request, log_id):
     if 'user_id' not in request.session:

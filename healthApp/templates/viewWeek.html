@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
-    <title>Health & Mental Well-Being Log</title>
+    <title>Health Log - {{log.title}}</title>
 </head>
 <body>
     <header>
         <h1>Health & Mental Well-Being Log</h1>
-        {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
     <div>
         {% if messages %}
@@ -27,37 +27,33 @@
         {% endif %}
     </div>
     <main>
-        <form action="/week/create/" method='post'>
+        <h1>{{week.title}}</h1>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Actions</th>
+            </tr>
+            {% for log in logs %}
+                {% if log.author_id == user.id %}
+                    {% if log.week_id == week.id %}
+                    <tr>
+                        <td>{{log.day}} {{log.title}}</td>
+                        <td></td>
+                    </tr>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        <h2>Update base week title</h2>
+        <form action="/week/{{week.id}}/update/" method='post'>
             {% csrf_token %}
             <section>
                 <label for="title">Title</label>
-                <input type="text" name="title">
+                <input type="text" name="title" value='{{week.title}}'>
             </section>
-            <section>
-                <input type="hidden" name="writer" value="{{user.id}}">
-            </section>
-            <button>Create Week</button>
+            <button>Update Week</button>
         </form>
-        <div class="calendar">
-            <iframe src="//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=4034957853&c=8&l=en&cbg=F9E3FA66&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=1&cbc=F9E3FA&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=" width="170" height="155" marginwidth=0 marginheight=0 frameborder=no scrolling=no allowtransparency='true'>Loading...</iframe>
-            <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
-        </div>
-        <button type="button" class="collapsible">Weeks You've Created</button>
-        <div class="content">
-            <table>
-                <tr>
-                    <th>Week</th>
-                </tr>
-                {% for week in weeks %}
-                {% if week.writer_id == user.id %}
-                    <tr>
-                        <td><a href="/week/{{week.id}}/view/">{{week.title}}</a></td>
-                    </tr>
-                {% endif %}
-                    
-                {% endfor %}
-            </table>
-        </div>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
