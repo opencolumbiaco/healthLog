@@ -51,6 +51,39 @@
                 <p>Once you enable sugar tracking you can then add this to your daily posts</p>
             </section>
         </div>
+        <div class="column">
+            {% for week in weeks %}
+                {% if week.writer_id == user.id %}
+                    <div class="mainWeek">
+                        <h3>{{week.title}}</h3>
+                            <table>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Actions</th>
+                                </tr>
+                                {% for log in logs %}
+                                    {% if log.week_id == week.id %}
+                                        <tr>
+                                            <td>
+                                                <a href="/log/{{log.id}}/view/">{{log.day}} {{log.title}}</a>
+                                            </td>
+                                            <td class="column">
+                                                <a href="/mood/">Log Symptoms</a>
+                                                <a href="">Log Medication</a>
+                                                {% if user.profile.diabetic == 1 %}
+                                                    <a href="">Log Sugars</a>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                    </div>
+                {% endif %}
+                
+            {% endfor %}
+        </div>
     </main>
     <footer>
         {% block footer %} {% include 'footer.html' %} {% endblock footer %}

@@ -8,9 +8,11 @@ def index(request):
         return render(request, 'welcome.html')
     else:
         user = User.objects.get(id=request.session['user_id'])
+        weeks = Week.objects.all().order_by('-updatedAt')
         logs = Log.objects.all().order_by('-updatedAt')
         context = {
             'user': user,
+            'weeks': weeks,
             'logs': logs,
         }
         return render(request, 'index.html', context)

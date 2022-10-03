@@ -230,6 +230,15 @@ body main .content section {
   align-items: center;
   margin: 1em;
 }
+body main .mainWeek table {
+  background-color: #F9E3FA66;
+}
+body main .mainWeek table .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 body footer {
   display: flex;
   flex-direction: column;

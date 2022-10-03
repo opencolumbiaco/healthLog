@@ -6,14 +6,28 @@ from django.db.models.deletion import CASCADE
 class UserManager(models.Manager):
     def validate(self, form):
         errors = {}
-
         usernameCheck = self.filter(username=form['username'])
         if usernameCheck:
             errors['username'] = 'Username already in use'
-
+        emailCheck = self.filter(email=form['email'])
+        if emailCheck:
+            errors['email'] = 'Email is already registered'
         if form['password'] != form['confirm']:
             errors['password'] = 'Passwords do not match'
+        return errors
 
+    def updateUsername(self, form):
+        errors = {}
+        usernameCheck = self.filter(username=form['username'])
+        if usernameCheck:
+            errors['username'] = 'Username already in use'
+        return errors
+    
+    def updateEmail(self, form):
+        errors = {}
+        emailCheck = self.filter(email=form['email'])
+        if emailCheck:
+            errors['email'] = 'Email is already registered'
         return errors
 
 class User(models.Model):
