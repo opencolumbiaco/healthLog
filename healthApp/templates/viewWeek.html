@@ -31,6 +31,11 @@
         <table>
             <tr>
                 <th>Day</th>
+                <th>Symptoms Logged</th>
+                <th>Medications Taken</th>
+                {% if user.profile.diabetic == 1 %}
+                <th>Sugar Readings</th>
+                {% endif %}
                 <th>Actions</th>
             </tr>
             {% for log in logs %}
@@ -38,6 +43,11 @@
                     {% if log.week_id == week.id %}
                     <tr>
                         <td>{{log.day}} {{log.title}}</td>
+                        <td></td>
+                        <td></td>
+                        {% if user.profile.diabetic == 1 %}
+                            <td></td>
+                        {% endif %}
                         <td></td>
                     </tr>
                     {% endif %}

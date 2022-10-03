@@ -150,6 +150,21 @@ body {
             }
         }
         .mainWeek {
+            .flexcolumn();
+            margin: 1em;
+            border: groove 5px @grey;
+
+            .week {
+                text-decoration: none;
+                border: 2px solid @grey;
+                box-shadow: 5px 5px @grey;
+                background-color: @blue;
+                padding: .5em;
+                margin: .3em;
+                color: @grey;
+                font-size: 1.2em;
+            }
+
             table {
                 background-color: @shadowPurple;
 
@@ -157,6 +172,12 @@ body {
                     .flexcolumn();
                 }
             }
+        }
+        .small {
+            width: 85%;
+        }
+        .column {
+            .flexcolumn();
         }
     }
     footer {

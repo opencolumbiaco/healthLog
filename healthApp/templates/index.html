@@ -55,7 +55,8 @@
             {% for week in weeks %}
                 {% if week.writer_id == user.id %}
                     <div class="mainWeek">
-                        <h3>{{week.title}}</h3>
+                        <h1>{{week.title}}</h1>
+                        <a href="/week/{{week.id}}/view/" class="week">View Week</a>
                             <table>
                                 <tr>
                                     <th>Day</th>

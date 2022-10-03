@@ -27,10 +27,17 @@
         {% endif %}
     </div>
     <main>
-        <h1>{{log.title}}</h1>
-        <textarea class='desktop' cols="60" rows="5" disabled>{{log.content}}</textarea>
-        <textarea class='mobile' cols="30" rows="5" disabled>{{log.content}}</textarea>
+        <div class="column">
+            <h1>{{log.title}}</h1>
+            <textarea class='desktop' cols="60" rows="5" disabled>{{log.content}}</textarea>
+            <textarea class='mobile' cols="30" rows="5" disabled>{{log.content}}</textarea>
+        </div>
         <table>
+            <tr>
+                <th></th>
+            </tr>
+        </table>
+        <table class="desktop">
             <tr>
                 <th>Time</th>
                 <th>Symptom</th>
@@ -40,7 +47,7 @@
             {% for mood in moods %}
                 <tr>
                     {% if mood.log_id == log.id %}
-                        <td>{{mood.tag}}</td>
+                        <td>{{mood.date}}</td>
                         {% for symptom in symptoms %}
                             {% if mood.symptom_id == symptom.id %}
                                 <td>{{symptom.symptom}}</td>
