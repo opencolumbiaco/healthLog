@@ -15,11 +15,11 @@ def index(request):
             'weeks': weeks,
             'logs': logs,
         }
+        print(user)
         return render(request, 'index.html', context)
 
 def exampleOne(request):
-    users = User.objects.filter(level=5).values()
-    user = []
+    user = User.objects.filter(level=3).values()
     profiles = Profile.objects.all().values()
     weeks = Week.objects.all().order_by('-updatedAt')
     logs = Log.objects.all().order_by('-updatedAt')
@@ -28,11 +28,11 @@ def exampleOne(request):
         'weeks': weeks,
         'logs': logs,
     }
+    print(user)
     return render(request, 'exampleOneIndex.html', context)
 
 def exampleTwo(request):
-    users = User.objects.filter(level=5).values()
-    user = []
+    user = User.objects.filter(level=5).values()
     profiles = Profile.objects.all().values()
     weeks = Week.objects.all().order_by('-updatedAt')
     logs = Log.objects.all().order_by('-updatedAt')
@@ -41,5 +41,27 @@ def exampleTwo(request):
         'weeks': weeks,
         'logs': logs,
     }
-    print(users)
+    print(user)
     return render(request, 'exampleTwoIndex.html', context)
+
+def exampleOneMood(request):
+        user = User.objects.filter(level=3).values()
+        symptoms = Symptom.objects.all().values()
+        logs = Log.objects.all().order_by('-updatedAt')
+        context = {
+            'user': user,
+            'symptoms': symptoms,
+            'logs': logs
+        }
+        return render(request, 'exampleMood.html', context)
+
+def exampleTwoMood(request):
+        user = User.objects.filter(level=5).values()
+        symptoms = Symptom.objects.all().values()
+        logs = Log.objects.all().order_by('-updatedAt')
+        context = {
+            'user': user,
+            'symptoms': symptoms,
+            'logs': logs
+        }
+        return render(request, 'exampleMood.html', context)

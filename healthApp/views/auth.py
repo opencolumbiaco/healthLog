@@ -57,10 +57,15 @@ def register(request):
         return redirect('/')
     if newUser.firstName == "Example":
         toUpdate = User.objects.get(id=request.session['user_id'])
-        toUpdate.level=5
+        toUpdate.level=3
         toUpdate.save()
         messages.error(request, "Welcome Example Account Member")
         return redirect('/')
+    if newUser.firstName == "Diabetic":
+        toUpdate = User.objects.get(id=request.session['user_id'])
+        toUpdate.level=5
+        toUpdate.save()
+        messages.error(request, "Welcome Diabetic Account Member")
     else:
         messages.error(request, "Welcome New Member")
         return redirect('/')
