@@ -6,16 +6,23 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Public
     path('', views.index),
+    path('exampleOne/', views.exampleOne),
+    path('exampleTwo/', views.exampleTwo),
     # Auth
     path('logReg/', views.logReg),
     path('login/', views.login),
     path('reg/', views.register),
+    path('logout/', views.logout),
     path('user/dashboard/', views.profileDash),
     path('user/<int:user_id>/data/', views.profileData),
     path('user/<int:user_id>/edit/', views.editProfile),
     path('user/<int:user_id>/updateEmail/', views.updateEmail),
     path('user/<int:user_id>/updateUsername/', views.updateUsername),
     path('user/<int:user_id>/updateDiabetic/', views.updateDiabetic),
+    path('user/<int:user_id>/updatePassword/', views.updatePassword),
+    path('user/<int:user_id>/updateImage/', views.updateImage),
+    path('user/<int:user_id>/addDoctor/', views.addDoctor),
+    path('user/<int:user_id>/updateProvider/', views.updateToProvider),
     # Week
     path('week/', views.addWeek),
     path('week/create/', views.createWeek),
@@ -31,6 +38,17 @@ urlpatterns = [
     path('log/<int:log_id>/view/', views.viewLog),
     path('log/<int:log_id>/update/', views.updateLog),
     path('log/<int:log_id>/delete/', views.deleteLog),
+    # Messages
+    path('user/messages/', views.viewAllMessages),
+    path('user/portal/', views.messagePortal),
+    path('user/messages/<int:message_id>/view/', views.viewMessage),
+    path('user/messages/add/', views.addMessage),
+    path('user/messages/create/', views.createMessage),
+    path('user/messages/<int:message_id>/addReply/', views.createReply),
+    path('user/messages/<int:message_id>/update/', views.updateMessage),
+    path('user/messages/<int:reply_id>/updateReply/', views.updateReply),
+    path('user/messages/<int:message_id>/delete/', views.deleteMessage),
+    path('user/messages/<int:reply_id>/delete/', views.deleteReply),
     # Symptom
     path('symptom/', views.symptoms),
     path('symptom/create/', views.createSymptom),
@@ -41,14 +59,25 @@ urlpatterns = [
     path('medication/', views.addMedication),
     path('medication/create/', views.createMed),
     path('medication/log/create/', views.createTaken),
+    path('medication/<int:medication_id>/edit/', views.editMedication),
+    path('medication/<int:medication_id>/update/', views.updateMedication),
     # Sugar
     path('sugar/', views.addSugar),
     path('sugar/create/', views.createSugar),
+    # Provider
+    path('provider/dashboard/', views.providerDash),
+    path('provider/notes/', views.providerNotes),
+    path('provider/notes/<int:note_id>/view/', views.viewNote),
+    path('provider/patient/<int:user_id>/view/', views.viewPatient),
+    path('provider/patient/<int:user_id>/addNote/', views.addNote),
+    path('provider/patient/<int:user_id>/createNote/', views.createNote),
+    path('provider/notes/<int:note_id>/update/', views.updateNote),
+    path('provider/notes/<int:note_id>/delete/', views.deleteNote),
     # Admin
     path('theAdmin/', views.theAdmin),
     path('theAdmin/user/', views.adminUsers),
     path('theAdmin/user/<int:user_id>/delete/', views.deleteUser),
-    path('logout/', views.logout),
+    path('theAdmin/user/<int:user_id/makeAdmin/', views.makeAdmin),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

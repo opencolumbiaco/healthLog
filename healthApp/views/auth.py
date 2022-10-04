@@ -119,10 +119,10 @@ def updateEmail(request, user_id):
     messages.error(request, 'Email updated')
     return redirect('/user/dashboard/')
 
-def updatePassword(request):
+def updatePassword(request, user_id):
     pass
 
-def updateImage(request):
+def updateImage(request, user_id):
     pass
 
 def updateDiabetic(request, user_id):
@@ -156,3 +156,12 @@ def profileData(request, user_id):
             'sugars': sugars,
         }
         return render(request, 'profile/profileData.html', context)
+
+def messagePortal(request):
+    pass
+
+def addDoctor(request, user_id):
+    pass
+
+def updateToProvider(request, user_id):
+    pass

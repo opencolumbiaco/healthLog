@@ -16,3 +16,9 @@ def index(request):
             'logs': logs,
         }
         return render(request, 'index.html', context)
+
+def exampleOne(request):
+    pass
+
+def exampleTwo(request):
+    pass

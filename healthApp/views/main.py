@@ -14,7 +14,7 @@ def addWeek(request):
             'user': user,
             'weeks': weeks,
         }
-        return render(request, 'createWeek.html', context)
+        return render(request, 'logs/createWeek.html', context)
 
 def addLog(request):
     if 'user_id' not in request.session:
@@ -27,7 +27,7 @@ def addLog(request):
             'user': user,
             'weeks': weeks,
         }
-        return render(request, 'createLog.html', context)
+        return render(request, 'logs/createLog.html', context)
 
 def addMood(request):
     if 'user_id' not in request.session:
@@ -42,7 +42,7 @@ def addMood(request):
             'symptoms': symptoms,
             'logs': logs
         }
-        return render(request, 'createMood.html', context)
+        return render(request, 'logs/createMood.html', context)
 
 def addNewMedication(request):
     if 'user_id' not in request.session:
@@ -70,7 +70,7 @@ def addMedication(request):
             'meds': meds,
             'logs': logs,
         }
-        return render(request, 'createMed.html', context)
+        return render(request, 'logs/createMed.html', context)
 
 def addSugar(request):
     if 'user_id' not in request.session:
@@ -83,7 +83,10 @@ def addSugar(request):
             'user': user,
             'logs': logs,
         }
-        return render(request, 'createSugar.html', context)
+        return render(request, 'logs/createSugar.html', context)
+
+def addMessage():
+    pass
 
 def createWeek(request):
     Week.objects.create(
@@ -145,6 +148,12 @@ def createSugar(request):
     messages.error(request, 'Entry saved to log')
     return redirect('/')
 
+def createMessage(request):
+    pass
+
+def createReply(request, message_id):
+    pass
+
 def viewWeek(request, week_id):
     if 'user_id' not in request.session:
         messages.error(request, "You need to be logged in")
@@ -166,7 +175,7 @@ def viewWeek(request, week_id):
                 'meds': meds,
                 'sugars': sugars,
             }
-        return render(request, 'viewWeek.html', context)
+        return render(request, 'logs/viewWeek.html', context)
 
 def viewLog(request, log_id):
     if 'user_id' not in request.session:
@@ -191,7 +200,13 @@ def viewLog(request, log_id):
         }
         # print('moods: ', moods)
         # print("symptoms: ", symptoms)
-        return render(request, 'viewLog.html', context)
+        return render(request, 'logs/viewLog.html', context)
+
+def viewAllMessages(request):
+    pass
+
+def viewMessage(request, message_id):
+    pass
 
 def updateMood(request, mood_id):
     toUpdate=Mood.objects.get(id=mood_id)
@@ -213,6 +228,21 @@ def updateLog(request, log_id):
     messages.error(request, 'Log Updated')
     return redirect(f'/log/{toUpdate.id}/view/')
 
+def updateWeek(request, week_id):
+    pass
+
+def updateTaken(request, taken_id):
+    pass
+
+def updateSugar(request, sugar_id):
+    pass
+
+def updateMessage(request, message_id):
+    pass
+
+def updateReply(request, reply_id):
+    pass
+
 def deleteLog(request, log_id):
     toDelete=Log.objects.get(id=log_id)
     toDelete.delete()
@@ -225,3 +255,20 @@ def deleteMood(request, mood_id):
     messages.error(request, 'Symptom Entry Removed')
     return redirect('/')
 
+def deleteWeek(request, week_id):
+    pass
+
+def deleteTaken(request, taken_id):
+    pass
+
+def deleteSugar(request, sugar_id):
+    pass
+
+def removeProvider(request, user_id):
+    pass
+
+def deleteMessage(request, message_id):
+    pass
+
+def deleteReply(request, reply_id):
+    pass

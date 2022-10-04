@@ -23,19 +23,6 @@ def createSymptom(request):
     messages.error(request, 'Symptom Created')
     return redirect('/symptom/')
 
-def editSymptom(request, symptom_id):
-    if 'user_id' not in request.session:
-        messages.error(request, "You need to be logged in")
-        return redirect('/')
-    else:
-        user = User.objects.get(id=request.session['user_id'])
-        symptom = Symptom.objects.get(id=symptom_id)
-        content = {
-            'user': user,
-            'symptom': symptom,
-        }
-        return render(request, 'editSymptom.html', context)
-
 def updateSymptom(request, symptom_id):
     toUpdate=Symptom.objects.get(id=symptom_id)
     toUpdate.symptom = request.POST['symptom']
@@ -96,3 +83,13 @@ def adminUsers(request):
         else:
             messages:error(request, "Please log in with an admin account")
             return redirect('/')
+
+def makeAdmin(request, user_id):
+    pass
+
+def editMedication(request, medication_id):
+    pass
+
+def updateMedication(request, medication_id):
+    pass
+
