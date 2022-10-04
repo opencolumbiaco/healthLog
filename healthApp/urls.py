@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/', views.login),
     path('reg/', views.register),
     path('user/dashboard/', views.profileDash),
+    path('user/<int:user_id>/data/', views.profileData),
     path('user/<int:user_id>/edit/', views.editProfile),
     path('user/<int:user_id>/updateEmail/', views.updateEmail),
     path('user/<int:user_id>/updateUsername/', views.updateUsername),
@@ -35,6 +36,14 @@ urlpatterns = [
     path('symptom/create/', views.createSymptom),
     path('symptom/<int:symptom_id>/update/', views.updateSymptom),
     path('symptom/<int:symptom_id>/delete/', views.deleteSymptom),
+    # Medication
+    path('add/medication/', views.addNewMedication),
+    path('medication/', views.addMedication),
+    path('medication/create/', views.createMed),
+    path('medication/log/create/', views.createTaken),
+    # Sugar
+    path('sugar/', views.addSugar),
+    path('sugar/create/', views.createSugar),
     # Admin
     path('theAdmin/', views.theAdmin),
     path('theAdmin/user/', views.adminUsers),

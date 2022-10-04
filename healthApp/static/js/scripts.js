@@ -40,13 +40,47 @@ function auth() {
     }
 }
 
-var slider=document.getElementById("mood");
-var emoji=document.getElementById("emoji");
-var emoticons=["mood_bad", "sentiment_very_dissatisfied", 
-    "sentiment_satisfied","sentiment_satisfied_alt",
-    "sentiment_very_satisfied"
-	];
-slider.oninput=function(){
-    emoji.innerHTML=emoticons[slider.value];
-}
 
+
+$(document).ready(function(){
+    $('#showMoods').click(function(){
+        $('#hideMoods').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showMeds').click(function() {
+        $('#hideMeds').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showSugars').click(function(){
+        $('#hideSugars').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showWeeks').click(function(){
+        $('#hideWeeks').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showLogs').click(function(){
+        $('#hideLogs').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllMoods').click(function(){
+        $('#hideAllMoods').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllTaken').click(function(){
+        $('#hideAllTaken').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllSugars').click(function(){
+        $('#hideAllSugars').animate( {
+            width: 'toggle'
+        })
+    })
+})

@@ -27,8 +27,8 @@
         {% endif %}
     </div>
     <main>
-        <h1>{{user.firstName}} create a base log for today</h1>
-        <form action="/log/create/" method='post'>
+        <h1>{{user.firstName}}, create a base log for today</h1>
+        <form action="/log/create/" method='post' class="create">
             {% csrf_token %}
             <section>
                 <label for="day">Select day</label>

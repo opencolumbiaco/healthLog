@@ -2,9 +2,28 @@
 
 @media @650 {
     body {
+        header {
+            nav {
+                .icon {
+                    display: none;
+                }
+                #myLinks {
+                    .flexrow();
+                }
+            }
+        }
         main {
             .desktop {
                 display: flex;
+
+                tr {
+                    td {
+                        img {
+                            border-radius: 50%;
+                            max-width: 100px;
+                        }
+                    }
+                }
             }
             .mobile {
                 display: none;

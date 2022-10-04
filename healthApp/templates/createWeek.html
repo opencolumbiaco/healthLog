@@ -15,7 +15,7 @@
 <body>
     <header>
         <h1>Health & Mental Well-Being Log</h1>
-        {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
     <div>
         {% if messages %}
@@ -27,7 +27,8 @@
         {% endif %}
     </div>
     <main>
-        <form action="/week/create/" method='post'>
+        <h1>{{user.firstName}}, create your week</h1>
+        <form action="/week/create/" method='post' class="create">
             {% csrf_token %}
             <section>
                 <label for="title">Title</label>
@@ -43,7 +44,7 @@
             <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
         </div>
         <button type="button" class="collapsible">Weeks You've Created</button>
-        <div class="content">
+        <div class="altcontent">
             <table>
                 <tr>
                     <th>Week</th>

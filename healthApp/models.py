@@ -125,7 +125,7 @@ class Taken(models.Model):
     member = models.ForeignKey(User, related_name='UserTaken', on_delete=CASCADE)
 
 class Sugar(models.Model):
-    time = models.CharField(max_length=255)
+    time = models.DateTimeField()
     level = models.IntegerField()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)

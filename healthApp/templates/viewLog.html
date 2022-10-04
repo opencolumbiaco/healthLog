@@ -27,10 +27,70 @@
         {% endif %}
     </div>
     <main>
-        <h1>{{log.title}}</h1>
-        <textarea class='desktop' cols="60" rows="5" disabled>{{log.content}}</textarea>
-        <textarea class='mobile' cols="30" rows="5" disabled>{{log.content}}</textarea>
-        <table>
+        <div class="column">
+            <h1>{{log.title}}</h1>
+            <textarea class='desktop' cols="60" rows="5" disabled>{{log.content}}</textarea>
+            <textarea class='mobile' cols="30" rows="5" disabled>{{log.content}}</textarea>
+        </div>
+        <div class="mobile">
+            <button type="button" id="showMoods">Moods</button>
+            <div id="hideMoods">
+                {% for mood in moods %}
+                    {% if mood.log_id == log.id %}
+                        <div class="mobileBox">
+                            <h3>{{mood.date}}</h3>
+                            <h3>{{mood.tag}}</h3>
+                            {% if mood.mood == 0 %}
+                                <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                            {% elif mood.mood == 1 %}
+                                <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                            {% elif mood.mood == 2 %}
+                                <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                            {% elif mood.mood == 3 %}
+                                <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                            {% else %}
+                                <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                            {% endif %}
+                            {% for symptom in symptoms %}
+                                {% if mood.symptom_id == symptom.id %}
+                                    <h3>{{symptom.symptom}}</h3>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button type="button" id="showMeds">Medications</button>
+            <div id="hideMeds">
+                {% for take in taken %}
+                    {% if take.day_id == log.id %}
+                        <div class="mobileBox">
+                            {% for med in meds %}
+                                {% if take.medication_id == med.id %}
+                                    <h3>{{med.name}}</h3>
+                                {% endif %}
+                            {% endfor %}
+                            <h3>{{take.when}}</h3>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if user.profile.diabetic == 1 %}
+                <button type="button" id="showSugars">Sugar Readings</button>
+                <div id="hideSugars">
+                    {% for sugar in sugars %}
+                        {% if sugar.note_id == log.id %}
+                            <div class="mobileBox">
+                                <h3>{{sugar.time}}</h3>
+                                <h3>{{sugar.level}}</h3>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        </table>
+        <table class="desktop">
             <tr>
                 <th>Time</th>
                 <th>Symptom</th>
@@ -40,7 +100,7 @@
             {% for mood in moods %}
                 <tr>
                     {% if mood.log_id == log.id %}
-                        <td>{{mood.tag}}</td>
+                        <td>{{mood.date}}</td>
                         {% for symptom in symptoms %}
                             {% if mood.symptom_id == symptom.id %}
                                 <td>{{symptom.symptom}}</td>
@@ -65,7 +125,7 @@
             {% endfor %}
         </table>
         <h2>Update base log</h2>
-        <form action="/log/{{log.id}}/update/" method='post'>
+        <form action="/log/{{log.id}}/update/" method='post' class="create">
             {% csrf_token %}
             <section>
                 <label for="title">Title</label>

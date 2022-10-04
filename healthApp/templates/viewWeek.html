@@ -28,22 +28,18 @@
     </div>
     <main>
         <h1>{{week.title}}</h1>
-        <table>
-            <tr>
-                <th>Day</th>
-                <th>Actions</th>
-            </tr>
+        <div class="mobile">
             {% for log in logs %}
                 {% if log.author_id == user.id %}
                     {% if log.week_id == week.id %}
-                    <tr>
-                        <td>{{log.day}} {{log.title}}</td>
-                        <td></td>
-                    </tr>
+                        <div class="mobileBox">
+                            <h3><a href="/log/{{log.id}}/view/">{{log.day}} {{log.title}}</a></h3>
+                        </div>
                     {% endif %}
                 {% endif %}
             {% endfor %}
-        </table>
+        </div>
+
 
         <h2>Update base week title</h2>
         <form action="/week/{{week.id}}/update/" method='post'>
