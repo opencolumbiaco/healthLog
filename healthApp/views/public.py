@@ -18,7 +18,28 @@ def index(request):
         return render(request, 'index.html', context)
 
 def exampleOne(request):
-    pass
+    users = User.objects.filter(level=5).values()
+    user = []
+    profiles = Profile.objects.all().values()
+    weeks = Week.objects.all().order_by('-updatedAt')
+    logs = Log.objects.all().order_by('-updatedAt')
+    context = {
+        'user': user,
+        'weeks': weeks,
+        'logs': logs,
+    }
+    return render(request, 'exampleOneIndex.html', context)
 
 def exampleTwo(request):
-    pass
+    users = User.objects.filter(level=5).values()
+    user = []
+    profiles = Profile.objects.all().values()
+    weeks = Week.objects.all().order_by('-updatedAt')
+    logs = Log.objects.all().order_by('-updatedAt')
+    context = {
+        'user': user,
+        'weeks': weeks,
+        'logs': logs,
+    }
+    print(users)
+    return render(request, 'exampleTwoIndex.html', context)

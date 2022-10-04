@@ -6,8 +6,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     # Public
     path('', views.index),
-    path('exampleOne/', views.exampleOne),
-    path('exampleTwo/', views.exampleTwo),
+    path('exampleOne/dashboard/', views.exampleOne),
+    path('exampleTwo/dashboard/', views.exampleTwo),
     # Auth
     path('logReg/', views.logReg),
     path('login/', views.login),
