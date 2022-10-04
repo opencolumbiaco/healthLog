@@ -58,4 +58,29 @@ $(document).ready(function(){
             width: 'toggle'
         })
     })
+    $('#showWeeks').click(function(){
+        $('#hideWeeks').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showLogs').click(function(){
+        $('#hideLogs').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllMoods').click(function(){
+        $('#hideAllMoods').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllTaken').click(function(){
+        $('#hideAllTaken').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showAllSugars').click(function(){
+        $('#hideAllSugars').animate( {
+            width: 'toggle'
+        })
+    })
 })

@@ -33,6 +33,12 @@
 h1 {
   font-family: 'Volkhov', serif;
 }
+p {
+  font-size: 1.1em;
+  max-width: 50%;
+  padding: 0.2em;
+  margin: 1em;
+}
 * {
   text-align: center;
   margin: auto;
@@ -71,8 +77,21 @@ table {
   margin: 1em 0.5em;
 }
 @media only screen and (min-width: 650px) {
+  body header nav .icon {
+    display: none;
+  }
+  body header nav #myLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
   body main .desktop {
     display: flex;
+  }
+  body main .desktop tr td img {
+    border-radius: 50%;
+    max-width: 100px;
   }
   body main .mobile {
     display: none;

@@ -14,7 +14,7 @@
 </head>
 <body>
     <header>
-        <h1>Your Profile</h1>
+        <h1>{{user.firstName}}'s Data</h1>
         {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
     <div>
@@ -29,50 +29,82 @@
     <main>
         <h1>Here is your data {{user.firstName}}</h1>
         <div class="mobile">
-            <img src="{{user.profile.image.url}}" alt="{{user.profile.image}}">
-            <h2>{{user.fullName}}</h2>
-            <h3>{{user.username}}</h3>
-            <h3>{{user.email}}</h3>
-            <h3>Diabetic: 
-                {% if user.profile.diabetic == 0 %}
-                    No
-                {% else %}
-                    Yes
-                {% endif %}
-            </h3>
-            <a href="/user/{{user.id}}/edit/" class="button">Edit Profile</a>
-        </div>
-        <table class="desktop">
-            <tr>
-                <th>Name</th>
-                <td>{{user.fullName}}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{user.username}}</td>
-            </tr>
-            <tr>
-                <th>Profile Image</th>
-                <td><img src="{{user.profile.image.url}}" alt="{{user.profile.image}}"></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{user.email}}</td>
-            </tr>
-            <tr>
-                <th>Diabetic</th>
-                <td>
-                    {% if user.profile.diabetic == 0 %}
-                        No
-                    {% else %}
-                        Yes
+            <button type="button" id="showWeeks">Weeks Created</button>
+            <div id="hideWeeks">
+                {% for week in weeks %}
+                    {% if week.writer_id == user.id %}
+                        <div class="mobileBox">
+                            <h3>{{week.title}}</h3>
+                        </div>
                     {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"><a href="/user/{{user.id}}/edit/">Edit Profile</a></td>
-            </tr>
-        </table>
+                {% endfor %}
+            </div>
+            <button type="button" id="showLogs">Days Created</button>
+            <div id="hideLogs">
+                {% for log in logs %}
+                    {% if log.author_id == user.id %}
+                        <div class="mobileBox">
+                            <h3>{{log.day}} {{log.title}}</h3>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button type="button" id="showAllMoods">Symptoms Logged</button>
+            <div id="hideAllMoods">
+                {% for mood in moods %}
+                    {% if mood.user_id == user.id %}
+                        <div class="mobileBox">
+                            <h3>{{mood.tag}} {{mood.date}}</h3>
+                            {% if mood.mood == 0 %}
+                                <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                            {% elif mood.mood == 1 %}
+                                <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                            {% elif mood.mood == 2 %}
+                                <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                            {% elif mood.mood == 3 %}
+                                <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                            {% else %}
+                                <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                            {% endif %}
+                            {% for symptom in symptoms %}
+                                {% if symptom.id == mood.symptom_id %}
+                                    <h3>{{symptom.symptom}}</h3>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button type="button" id="showAllTaken">Medications Taken</button>
+            <div id="hideAllTaken">
+                {% for take in taken %}
+                    {% if take.member_id == user.id %}
+                        <div class="mobileBox">
+                            <h3>{{take.when}}</h3>
+                            {% for med in meds %}
+                                {% if med.id == take.medication_id %}
+                                    <h3>{{med.name}}</h3>
+                                    <h3>{{med.dose}} {{med.freq}}</h3>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if user.profile.diabetic == 1 %}
+                <button type="button" id="showAllSugars">Sugar Levels Logged</button>
+                <div id="hideAllSugars">
+                    {% for sugar in sugars %}
+                        {% if sugar.owner_id == user.id %}
+                            <div class="mobileBox">
+                                <h3>{{sugar.time}}</h3>
+                                <h3>{{sugar.level}}</h3>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

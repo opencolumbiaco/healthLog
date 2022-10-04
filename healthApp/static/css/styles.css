@@ -332,12 +332,22 @@ body main .mobile {
 }
 body main .mobile #hideMoods,
 body main .mobile #hideMeds,
-body main .mobile #hideSugars {
+body main .mobile #hideSugars,
+body main .mobile #hideWeeks,
+body main .mobile #hideLogs,
+body main .mobile #hideAllMoods,
+body main .mobile #hideAllTaken,
+body main .mobile #hideAllSugars {
   display: none;
 }
 body main .mobile #hideMoods .mobileBox,
 body main .mobile #hideMeds .mobileBox,
-body main .mobile #hideSugars .mobileBox {
+body main .mobile #hideSugars .mobileBox,
+body main .mobile #hideWeeks .mobileBox,
+body main .mobile #hideLogs .mobileBox,
+body main .mobile #hideAllMoods .mobileBox,
+body main .mobile #hideAllTaken .mobileBox,
+body main .mobile #hideAllSugars .mobileBox {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -348,7 +358,12 @@ body main .mobile #hideSugars .mobileBox {
 }
 body main .mobile #hideMoods .mobileBox img,
 body main .mobile #hideMeds .mobileBox img,
-body main .mobile #hideSugars .mobileBox img {
+body main .mobile #hideSugars .mobileBox img,
+body main .mobile #hideWeeks .mobileBox img,
+body main .mobile #hideLogs .mobileBox img,
+body main .mobile #hideAllMoods .mobileBox img,
+body main .mobile #hideAllTaken .mobileBox img,
+body main .mobile #hideAllSugars .mobileBox img {
   max-width: 100px;
   border-radius: 50%;
   margin: 0.2em;
@@ -401,8 +416,21 @@ body footer p {
   margin: 0.5em;
 }
 @media only screen and (min-width: 650px) {
+  body header nav .icon {
+    display: none;
+  }
+  body header nav #myLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
   body main .desktop {
     display: flex;
+  }
+  body main .desktop tr td img {
+    border-radius: 50%;
+    max-width: 100px;
   }
   body main .mobile {
     display: none;

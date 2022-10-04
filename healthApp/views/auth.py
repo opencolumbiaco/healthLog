@@ -74,7 +74,7 @@ def profileDash(request):
         context = {
             'user': user,
         }
-        return render(request, 'profile/profileData.html', context)
+        return render(request, 'profile/profile.html', context)
 
 def editProfile(request, user_id):
     if 'user_id' not in request.session:
@@ -131,3 +131,28 @@ def updateDiabetic(request, user_id):
     toUpdate.save()
     messages.error(request, 'Updated Diabetic Question')
     return redirect('/user/dashboard/')
+
+def profileData(request, user_id):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        weeks = Week.objects.all().values()
+        logs = Log.objects.all().values()
+        meds = Medication.objects.all().values()
+        symptoms = Symptom.objects.all().values()
+        moods = Mood.objects.all().values()
+        taken = Taken.objects.all().values()
+        sugars = Sugar.objects.all().values()
+        context = {
+            'user': user,
+            'weeks': weeks,
+            'logs': logs,
+            'meds': meds,
+            'symptoms': symptoms,
+            'moods': moods,
+            'taken': taken,
+            'sugars': sugars,
+        }
+        return render(request, 'profile/profileData.html', context)
