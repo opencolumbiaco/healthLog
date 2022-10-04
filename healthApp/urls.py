@@ -35,6 +35,14 @@ urlpatterns = [
     path('symptom/create/', views.createSymptom),
     path('symptom/<int:symptom_id>/update/', views.updateSymptom),
     path('symptom/<int:symptom_id>/delete/', views.deleteSymptom),
+    # Medication
+    path('add/medication/', views.addNewMedication),
+    path('medication/', views.addMedication),
+    path('medication/create/', views.createMed),
+    path('medication/log/create/', views.createTaken),
+    # Sugar
+    path('sugar/', views.addSugar),
+    path('sugar/create/', views.createSugar),
     # Admin
     path('theAdmin/', views.theAdmin),
     path('theAdmin/user/', views.adminUsers),

@@ -14,6 +14,7 @@
 </head>
 <body>
     <header>
+        <h1>Your Profile</h1>
         {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
     </header>
     <div>
@@ -27,7 +28,21 @@
     </div>
     <main>
         <h1>Here is your data {{user.firstName}}</h1>
-        <table>
+        <div class="mobile">
+            <img src="{{user.profile.image.url}}" alt="{{user.profile.image}}">
+            <h2>{{user.fullName}}</h2>
+            <h3>{{user.username}}</h3>
+            <h3>{{user.email}}</h3>
+            <h3>Diabetic: 
+                {% if user.profile.diabetic == 0 %}
+                    No
+                {% else %}
+                    Yes
+                {% endif %}
+            </h3>
+            <a href="/user/{{user.id}}/edit/" class="button">Edit Profile</a>
+        </div>
+        <table class="desktop">
             <tr>
                 <th>Name</th>
                 <td>{{user.fullName}}</td>
@@ -58,91 +73,6 @@
                 <td colspan="2"><a href="/user/{{user.id}}/edit/">Edit Profile</a></td>
             </tr>
         </table>
-        <h2>How often have you logged each symptom?</h2>
-        {% if moods %}
-            <table>
-                <tr>
-                    <th>Symptom</th>
-                    <th>Times Logged</th>
-                </tr>
-                {% if generalHeadache > 0 %}
-                    <tr>
-                        <td>General Headaches</td>
-                        <td>{{generalHeadache}}</td>
-                    </tr>
-                {% endif %}
-                {% if fatigue > 0 %}
-                    <tr>
-                        <td>Fatigue</td>
-                        <td>{{fatigue}}</td>
-                    </tr>
-                {% endif %}
-                {% if migraine > 0 %}
-                    <tr>
-                        <td>Migraine</td>
-                        <td>{{migraine}}</td>
-                    </tr>
-                {% endif %}
-                {% if panicAttack > 0 %}
-                    <tr>
-                        <td>Panic Attack</td>
-                        <td>{{panicAttack}}</td>
-                    </tr>
-                {% endif %}
-                {% if generalBack > 0 %}
-                    <tr>
-                        <td>General Back Pain</td>
-                        <td>{{generalBack}}</td>
-                    </tr>
-                {% endif %}
-                {% if chronicBack > 0 %}
-                    <tr>
-                        <td>Chronic Back Pain</td>
-                        <td>{{chronicBack}}</td>
-                    </tr>
-                {% endif %}
-                {% if depression > 0 %}
-                    <tr>
-                        <td>Depression</td>
-                        <td>{{depression}}</td>
-                    </tr>
-                {% endif %}
-                {% if anxiety > 0 %}
-                    <tr>
-                        <td>Anxiety</td>
-                        <td>{{anxiety}}</td>
-                    </tr>
-                {% endif %}
-                {% if fibro > 0 %}
-                    <tr>
-                        <td>Fibromyalgia</td>
-                        <td>{{fibro}}</td>
-                    </tr>
-                {% endif %}
-                {% if aches > 0 %}
-                    <tr>
-                        <td>Ached and Pains</td>
-                        <td>{{aches}}</td>
-                    </tr>
-                {% endif %}
-                {% if other > 0 %}
-                    <tr>
-                        <td>Other</td>
-                        <td>{{other}}</td>
-                    </tr>
-                {% endif %}
-            </table>
-        {% else %}
-            <table>
-                <tr>
-                    <th>Symptom</th>
-                    <th>Times Logged</th>
-                </tr>
-                <tr>
-                    <td colspan="2">Once you start logging Data it will appear here</td>
-                </tr>
-            </table>
-        {% endif %}
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

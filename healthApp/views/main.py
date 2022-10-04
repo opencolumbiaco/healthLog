@@ -44,6 +44,47 @@ def addMood(request):
         }
         return render(request, 'createMood.html', context)
 
+def addNewMedication(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        meds = Medication.objects.all().values()
+        context = {
+            'user': user,
+            'meds': meds,
+        }
+        return render(request, 'createNewMed.html', context)
+
+def addMedication(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        meds = Medication.objects.all().values()
+        logs = Log.objects.all().values()
+        context = {
+            'user': user,
+            'meds': meds,
+            'logs': logs,
+        }
+        return render(request, 'createMed.html', context)
+
+def addSugar(request):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        logs = Log.objects.all().values()
+        context = {
+            'user': user,
+            'logs': logs,
+        }
+        return render(request, 'createSugar.html', context)
+
 def createWeek(request):
     Week.objects.create(
         title=request.POST['title'],
@@ -75,6 +116,35 @@ def createMood(request):
     messages.error(request, 'Symptom Entry Created')
     return redirect('/')
 
+def createMed(request):
+    Medication.objects.create(
+        name=request.POST['name'],
+        dose=request.POST['dose'],
+        freq=request.POST['freq'],
+    )
+    messages.error(request, 'Medication Added to list')
+    return redirect('/add/medication/')
+
+def createTaken(request):
+    Taken.objects.create(
+        when=request.POST['when'],
+        medication_id=request.POST['medication'],
+        day_id=request.POST['day'],
+        member_id=request.POST['member'],
+    )
+    messages.error(request, 'Medication added to log')
+    return redirect('/')
+
+def createSugar(request):
+    Sugar.objects.create(
+        time=request.POST['time'],
+        level=request.POST['level'],
+        note_id=request.POST['note'],
+        owner_id=request.POST['owner'],
+    )
+    messages.error(request, 'Entry saved to log')
+    return redirect('/')
+
 def viewWeek(request, week_id):
     if 'user_id' not in request.session:
         messages.error(request, "You need to be logged in")
@@ -85,12 +155,16 @@ def viewWeek(request, week_id):
         logs = Log.objects.all().values()
         moods = Mood.objects.all().values()
         symptoms = Symptom.objects.all().values()
+        meds = Taken.objects.all().values()
+        sugars = Sugar.objects.all().values()
         context = {
                 'user': user,
                 'week': week,
                 'logs': logs,
                 'moods': moods,
                 'symptoms': symptoms,
+                'meds': meds,
+                'sugars': sugars,
             }
         return render(request, 'viewWeek.html', context)
 
@@ -103,14 +177,20 @@ def viewLog(request, log_id):
         log = Log.objects.get(id=log_id)
         moods = Mood.objects.all().values()
         symptoms = Symptom.objects.all().values()
+        meds = Medication.objects.all().values()
+        taken = Taken.objects.all().values()
+        sugars = Sugar.objects.all().values()
         context = {
             'user': user,
             'log': log,
             'moods': moods,
             'symptoms': symptoms,
+            'meds': meds,
+            'taken': taken,
+            'sugars': sugars,
         }
-        print('moods: ', moods)
-        print("symptoms: ", symptoms)
+        # print('moods: ', moods)
+        # print("symptoms: ", symptoms)
         return render(request, 'viewLog.html', context)
 
 def updateMood(request, mood_id):

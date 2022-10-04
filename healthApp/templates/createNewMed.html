@@ -27,37 +27,34 @@
         {% endif %}
     </div>
     <main>
-        <h1>{{user.firstName}}, create your week</h1>
-        <form action="/week/create/" method='post' class="create">
+        <form action="/medication/create/" method='post' class="create">
             {% csrf_token %}
             <section>
-                <label for="title">Title</label>
-                <input type="text" name="title">
+                <label for="name">Medication Name</label>
+                <input type="text" name="name">
             </section>
             <section>
-                <input type="hidden" name="writer" value="{{user.id}}">
+                <label for="dose">Dose</label>
+                <input type="text" name="dose">
             </section>
-            <button>Create Week</button>
+            <section>
+                <label for="freq">Frequency Taken</label>
+                <input type="text" name="freq">
+            </section>
+            <button>Add Medication</button>
         </form>
-        <div class="calendar">
-            <iframe src="//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=4034957853&c=8&l=en&cbg=F9E3FA66&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=1&cbc=F9E3FA&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=" width="170" height="155" marginwidth=0 marginheight=0 frameborder=no scrolling=no allowtransparency='true'>Loading...</iframe>
-            <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
-        </div>
-        <button type="button" class="collapsible">Weeks You've Created</button>
+        <button type="button" class="collapsible">Current Medications Created</button>
         <div class="altcontent">
-            <table>
-                <tr>
-                    <th>Week</th>
-                </tr>
-                {% for week in weeks %}
-                {% if week.writer_id == user.id %}
-                    <tr>
-                        <td><a href="/week/{{week.id}}/view/">{{week.title}}</a></td>
-                    </tr>
-                {% endif %}
-                    
+                {% for med in meds %}
+                <div class="mobileBox">
+                    <img src="{{med.upload.image.url}}" alt="{{med.name}}" class="desktop">
+                    <div class="column">
+                        <h3>{{med.name}}</h3>
+                        <h3>Dose: {{med.dose}}</h3>
+                        <h3>Taken: {{med.freq}}</h3>
+                    </div>
+                </div>
                 {% endfor %}
-            </table>
         </div>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}

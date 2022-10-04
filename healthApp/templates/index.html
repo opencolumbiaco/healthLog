@@ -57,29 +57,33 @@
                     <div class="mainWeek">
                         <h1>{{week.title}}</h1>
                         <a href="/week/{{week.id}}/view/" class="week">View Week</a>
-                            <table>
-                                <tr>
-                                    <th>Day</th>
-                                    <th>Actions</th>
-                                </tr>
-                                {% for log in logs %}
-                                    {% if log.week_id == week.id %}
-                                        <tr>
-                                            <td>
-                                                <a href="/log/{{log.id}}/view/">{{log.day}} {{log.title}}</a>
-                                            </td>
-                                            <td class="column">
-                                                <a href="/mood/">Log Symptoms</a>
-                                                <a href="">Log Medication</a>
-                                                {% if user.profile.diabetic == 1 %}
-                                                    <a href="">Log Sugars</a>
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                        
-                                    {% endif %}
-                                {% endfor %}
-                            </table>
+                        <div class="nav">
+                            <a href="/log/">Add New Day</a>
+                            <a href="/mood/">Log Symptoms/Mood</a>
+                            <a href="/medication/">Log Medication</a>
+                            {% if user.profile.diabetic == 1 %}
+                                <a href="/sugar/">Log Sugars</a>
+                            {% endif %}
+                        </div>
+                        <table>
+                            <tr>
+                                <th>Day</th>
+                                <th>Actions</th>
+                            </tr>
+                            {% for log in logs %}
+                                {% if log.week_id == week.id %}
+                                    <tr>
+                                        <td>
+                                            {{log.day}} {{log.title}}
+                                        </td>
+                                        <td>
+                                            <a href="/log/{{log.id}}/view/">Edit / View</a>
+                                        </td>
+                                    </tr>
+                                    
+                                {% endif %}
+                            {% endfor %}
+                        </table>
                     </div>
                 {% endif %}
                 
