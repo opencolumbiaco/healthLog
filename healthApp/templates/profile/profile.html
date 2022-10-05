@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Mental Well-Being Health Log</title>
+</head>
+<body>
+    <header>
+        <h1>Your Profile</h1>
+        {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
+    </header>
+    <div>
+        {% if messages %}
+        <section class='messages'>
+            {% for message in messages %}
+            <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </div>
+    <main>
+        <h1>Here is your information {{user.firstName}}</h1>
+        <div class="mobile">
+            <img src="{{user.profile.image.url}}" alt="{{user.profile.image}}">
+            <h2>{{user.fullName}}</h2>
+            <h3>{{user.username}}</h3>
+            <h3>{{user.email}}</h3>
+            <h3>Diabetic: 
+                {% if user.profile.diabetic == 0 %}
+                    No
+                {% else %}
+                    Yes
+                {% endif %}
+            </h3>
+            <a href="/user/{{user.id}}/edit/" class="button">Edit Profile</a>
+            <a href="/user/{{user.id}}/data/" class="button">View your Data</a>
+        </div>
+        <table class="desktop">
+            <tr>
+                <th>Name</th>
+                <td>{{user.fullName}}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{user.username}}</td>
+            </tr>
+            <tr>
+                <th>Profile Image</th>
+                <td><img src="{{user.profile.image.url}}" alt="{{user.profile.image}}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{user.email}}</td>
+            </tr>
+            <tr>
+                <th>Diabetic</th>
+                <td>
+                    {% if user.profile.diabetic == 0 %}
+                        No
+                    {% else %}
+                        Yes
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><a href="/user/{{user.id}}/edit/">Edit Profile</a></td>
+            </tr>
+        </table>
+    </main>
+    {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='{% static "js/scripts.js"%}'></script>
+</body>
+</html>
