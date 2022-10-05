@@ -124,6 +124,44 @@
                 </tr>
             {% endfor %}
         </table>
+        <table class="desktop">
+            <tr>
+                <th>Time</th>
+                <th>Med</th>
+            </tr>
+            {% for take in taken %}
+                {% if take.day_id == log.id %}
+                    <td>{{take.when}}</td>
+                    {% for med in meds %}
+                        {% if med.id == take.medication_id %}
+                            <td>{{med.name}}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </table>
+        {% if user.profile.diabetic == 1 %}
+            <table class="desktop">
+                <tr>
+                    <th>Time</th>
+                    <th>Level</th>
+                </tr>
+                {% for sugar in sugars %}
+                    {% if sugar.note_id == log.id %}
+                    <tr>
+                        <td>{{sugar.time}}</td>
+                        {% if sugar.level <= 100 %}
+                            <td class='red'>{{sugar.level}}  - Low</td>
+                        {% elif sugar.level >= 175 %}
+                            <td class="red">{{sugar.level}} - High</td>
+                        {% else %}
+                            <td>{{sugar.level}}</td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% endif %}
         <h2>Update base log</h2>
         <form action="/log/{{log.id}}/update/" method='post' class="create">
             {% csrf_token %}

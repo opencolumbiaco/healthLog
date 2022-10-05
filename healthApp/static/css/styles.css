@@ -432,7 +432,17 @@ body footer p {
     border-radius: 50%;
     max-width: 100px;
   }
+  body main .desktop tr .red {
+    color: #D13334;
+    font-weight: 900;
+  }
   body main .mobile {
+    display: none;
+  }
+  body main .column .desktop {
+    display: flex;
+  }
+  body main .column .mobile {
     display: none;
   }
 }
