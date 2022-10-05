@@ -23,7 +23,7 @@ urlpatterns = [
     path('user/<int:user_id>/updateDiabetic/', views.updateDiabetic),
     path('user/<int:user_id>/updatePassword/', views.updatePassword),
     path('user/<int:user_id>/updateImage/', views.updateImage),
-    path('user/<int:user_id>/addDoctor/', views.addDoctor),
+    path('user/addDoctor/', views.addDoctor),
     path('user/<int:user_id>/updateProvider/', views.updateToProvider),
     # Week
     path('week/', views.addWeek),
@@ -80,6 +80,7 @@ urlpatterns = [
     path('theAdmin/user/', views.adminUsers),
     path('theAdmin/user/<int:user_id>/delete/', views.deleteUser),
     path('theAdmin/user/<int:user_id/makeAdmin/', views.makeAdmin),
+    path('theAdmin/user/<int:user_id>/makeSuperAdmin/', views.makeSuperAdmin),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

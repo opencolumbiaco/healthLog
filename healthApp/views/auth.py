@@ -51,7 +51,7 @@ def register(request):
     request.session['user_id'] = newUser.id
     if newUser.id == 1:
         toUpdate = User.objects.get(id=request.session['user_id'])
-        toUpdate.level=9
+        toUpdate.level=24
         toUpdate.save()
         messages.error(request, "Welcome Admin Member")
         return redirect('/')
@@ -165,8 +165,18 @@ def profileData(request, user_id):
 def messagePortal(request):
     pass
 
-def addDoctor(request, user_id):
+def addDoctor(request):
     pass
 
 def updateToProvider(request, user_id):
-    pass
+    toUpdate=User.objects.get(id=user_id)
+    errors = User.objects.updateProvider(request.POST)
+    if errors:
+        for err in errors.values():
+            messages.error(request, err)
+        return redirect(f'/user/{user_id}/edit/')
+    toUpdate.level=8
+    toUpdate.save()
+    messages.error(request, "Thank you for registering as a Provider")
+    return redirect('/user/dashboard/')
+
