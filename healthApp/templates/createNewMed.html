@@ -47,7 +47,11 @@
         <div class="altcontent">
                 {% for med in meds %}
                 <div class="mobileBox">
-                    <img src="{{med.upload.image.url}}" alt="{{med.name}}" class="desktop">
+                    {% for upload in uploads %}
+                        {% if upload.medication_id == med.id %}
+                            <img src="/../media/{{upload.image}}" alt="{{med.name}}" class="desktop">
+                        {% endif %}
+                    {% endfor %}
                     <div class="column">
                         <h3>{{med.name}}</h3>
                         <h3>Dose: {{med.dose}}</h3>

@@ -106,4 +106,12 @@ table {
   body main .column .mobile {
     display: none;
   }
+  body main .altcontent .mobileBox .desktop {
+    display: flex;
+    max-width: 100px;
+  }
+  body main .altcontent .mobileBox .column {
+    padding: 1em;
+    margin: 1em;
+  }
 }

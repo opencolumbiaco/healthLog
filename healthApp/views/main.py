@@ -51,9 +51,11 @@ def addNewMedication(request):
     else:
         user = User.objects.get(id=request.session['user_id'])
         meds = Medication.objects.all().values()
+        uploads = Upload.objects.all().values()
         context = {
             'user': user,
             'meds': meds,
+            'uploads': uploads,
         }
         return render(request, 'createNewMed.html', context)
 
