@@ -76,7 +76,19 @@
         </table>
         <h2>Would you like to share your information with your provider?</h2>
         <button type="button" id="showDrForm">Add your Doctor</button>
-        <h3>If your Dr is not part of the list below send them the link to the site and have them initiate a ticket to get added.  </h3>
+        <h3>If your Dr is not part of the list below send them the following information:</h3>
+        <form class="copy">
+            <textarea id="drInfo" cols="30" rows="10" disabled>
+                To gain access as a provider please use one of the following methods
+                Start a chat at the following link entering the access department:
+                https://tawk.to/chat/633ccb1654f06e12d898766e/1geioe0ce
+                They can send an email to the following address:
+                tickets@open-columbia-county.p.tawk.email
+                This is part of our ticketing system of the chat so only those with access to our chat ticket system are able to respond
+                They can also send a direct email to
+                healthLog@opencolumbiaco.org as well as this is where the reply will come through
+            </textarea>
+        </form>
         <div id="hideDrForm">
             <form action="" method="post">
                 {% csrf_token %}

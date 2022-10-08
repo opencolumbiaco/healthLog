@@ -81,8 +81,6 @@ class Symptom(models.Model):
 
 class Medication(models.Model):
     name = models.CharField(max_length=255)
-    dose = models.CharField(max_length=255)
-    freq = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -101,6 +99,7 @@ def create_medication_upload(sender, instance, created, **kwargs):
 
 class Week(models.Model):
     title = models.CharField(max_length=255)
+    freq = models.CharField(max_length=255, default='daily')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     writer = models.ForeignKey(User, related_name='theWriter', on_delete=CASCADE)
@@ -131,6 +130,7 @@ class Mood(models.Model):
 
 class Taken(models.Model):
     when = models.DateTimeField()
+    dose = models.CharField(max_length=255)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     medication = models.ForeignKey(Medication, related_name='theMed', on_delete=CASCADE)

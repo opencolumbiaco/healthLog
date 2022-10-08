@@ -108,6 +108,13 @@ def makeSuperAdmin(request, user_id):
     messages.error(request, "User was give super admin rights")
     return redirect('/theAdmin/user/')
 
+def makeProvider(request, user_id):
+    toUpdate=User.objects.get(id=user_id)
+    toUpdate.level=8
+    toUpdate.save()
+    messages.error(request, "User updated to Provider")
+    return redirect('/theAdmin/user/')
+
 def editMedication(request, medication_id):
     if 'user_id' not in request.session:
         messages.error(request, "You need to be logged in")

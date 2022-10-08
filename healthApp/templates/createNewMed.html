@@ -34,11 +34,7 @@
                 <input type="text" name="name">
             </section>
             <section>
-                <label for="dose">Dose</label>
-                <input type="text" name="dose">
-            </section>
-            <section>
-                <label for="freq">Frequency Taken</label>
+                <label for="frew">Frequency Taken</label>
                 <input type="text" name="freq">
             </section>
             <button>Add Medication</button>
@@ -54,8 +50,6 @@
                     {% endfor %}
                     <div class="column">
                         <h3>{{med.name}}</h3>
-                        <h3>Dose: {{med.dose}}</h3>
-                        <h3>Taken: {{med.freq}}</h3>
                     </div>
                 </div>
                 {% endfor %}

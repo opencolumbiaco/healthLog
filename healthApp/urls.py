@@ -79,7 +79,8 @@ urlpatterns = [
     path('theAdmin/', views.theAdmin),
     path('theAdmin/user/', views.adminUsers),
     path('theAdmin/user/<int:user_id>/delete/', views.deleteUser),
-    path('theAdmin/user/<int:user_id/makeAdmin/', views.makeAdmin),
+    path('theAdmin/user/<int:user_id>/makeAdmin/', views.makeAdmin),
+    path('theAdmin/user/<int:user_id>/makeProvider/', views.makeProvider),
     path('theAdmin/user/<int:user_id>/makeSuperAdmin/', views.makeSuperAdmin),
 ]
 if settings.DEBUG:

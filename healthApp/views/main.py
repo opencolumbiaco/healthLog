@@ -124,7 +124,6 @@ def createMood(request):
 def createMed(request):
     Medication.objects.create(
         name=request.POST['name'],
-        dose=request.POST['dose'],
         freq=request.POST['freq'],
     )
     messages.error(request, 'Medication Added to list')
@@ -133,6 +132,7 @@ def createMed(request):
 def createTaken(request):
     Taken.objects.create(
         when=request.POST['when'],
+        dose=request.POST['dose'],
         medication_id=request.POST['medication'],
         day_id=request.POST['day'],
         member_id=request.POST['member'],
