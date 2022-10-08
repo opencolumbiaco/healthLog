@@ -65,3 +65,7 @@ def exampleTwoMood(request):
             'logs': logs
         }
         return render(request, 'exampleMood.html', context)
+        return render(request, 'index.html', context)
+
+def about(request):
+    return render(request, 'about.html')

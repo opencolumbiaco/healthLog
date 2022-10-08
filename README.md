@@ -10,7 +10,11 @@ Where you can log things concerning your mental health as well as regular health
 - users can add as many medications to thier day as they want
 
 ## Current In progress - addingProviderAccess Branch
+<<<<<<< HEAD
 - Example account - an account simply for non users to view examples of what they can do
+=======
+- Example account - an account simply for non users to view exampls of what they can do
+>>>>>>> 3b729cba1ea03cb0e08286eaaaf0c489c1ac62ca
 - Provider access to allow a designated DR to see your logs
 - Chat bot to facilitate getting the provider added with the correct levels
 

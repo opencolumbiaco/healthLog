@@ -10,6 +10,7 @@ urlpatterns = [
     path('exampleTwo/dashboard/', views.exampleTwo),
     path('exampleOne/mood/', views.exampleOneMood),
     path('exampleTwo/mood/', views.exampleTwoMood),
+    path('about/', views.about),
     # Auth
     path('logReg/', views.logReg),
     path('login/', views.login),
