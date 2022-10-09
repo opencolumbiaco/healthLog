@@ -63,4 +63,7 @@
 # Possible current view issues
 - There are still some CSS issues on desktop mode so you may want to inspect element and change to a mobile view if it looks like a page is not done (that just means it is done on mobile and still needs the desktop views written)
 - When on the Provider branch there may be some view issues when it comes to the medication files
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3b729cba1ea03cb0e08286eaaaf0c489c1ac62ca

@@ -51,16 +51,21 @@ def register(request):
     request.session['user_id'] = newUser.id
     if newUser.id == 1:
         toUpdate = User.objects.get(id=request.session['user_id'])
-        toUpdate.level=9
+        toUpdate.level=24
         toUpdate.save()
         messages.error(request, "Welcome Admin Member")
         return redirect('/')
     if newUser.firstName == "Example":
         toUpdate = User.objects.get(id=request.session['user_id'])
-        toUpdate.level=5
+        toUpdate.level=3
         toUpdate.save()
         messages.error(request, "Welcome Example Account Member")
         return redirect('/')
+    if newUser.firstName == "Diabetic":
+        toUpdate = User.objects.get(id=request.session['user_id'])
+        toUpdate.level=5
+        toUpdate.save()
+        messages.error(request, "Welcome Diabetic Account Member")
     else:
         messages.error(request, "Welcome New Member")
         return redirect('/')
@@ -71,8 +76,12 @@ def profileDash(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
+        users = User.objects.all().values()
+        providers = Patient.objects.all().values()
         context = {
             'user': user,
+            'users': users,
+            'providers': providers,
         }
         return render(request, 'profile/profile.html', context)
 
@@ -119,10 +128,10 @@ def updateEmail(request, user_id):
     messages.error(request, 'Email updated')
     return redirect('/user/dashboard/')
 
-def updatePassword(request):
+def updatePassword(request, user_id):
     pass
 
-def updateImage(request):
+def updateImage(request, user_id):
     pass
 
 def updateDiabetic(request, user_id):
@@ -156,3 +165,27 @@ def profileData(request, user_id):
             'sugars': sugars,
         }
         return render(request, 'profile/profileData.html', context)
+
+def messagePortal(request):
+    pass
+
+def addDoctor(request):
+    Patient.objects.create(
+        patient_id = request.POST['patient'],
+        provider_id = request.POST['provider'],
+    )
+    messages.error(request, "You have added your Provider")
+    return redirect('/user/dashboard/')
+
+def updateToProvider(request, user_id):
+    toUpdate=User.objects.get(id=user_id)
+    errors = User.objects.updateProvider(request.POST)
+    if errors:
+        for err in errors.values():
+            messages.error(request, err)
+        return redirect(f'/user/{user_id}/edit/')
+    toUpdate.level=8
+    toUpdate.save()
+    messages.error(request, "Thank you for registering as a Provider")
+    return redirect('/user/dashboard/')
+

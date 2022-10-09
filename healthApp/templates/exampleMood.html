@@ -13,9 +13,10 @@
     <title>Health & Mental Well-Being Log</title>
 </head>
 <body>
+    {% for user in user %}
     <header>
         <h1>Health & Mental Well-Being Log</h1>
-        {% block loggedMenu %} {% include 'loggedMenu.html' %} {% endblock loggedMenu %}
+        {% block menu %} {% include 'menu.html' %} {% endblock menu %}
     </header>
     <div>
         {% if messages %}
@@ -27,35 +28,49 @@
         {% endif %}
     </div>
     <main>
-        <form action="/medication/create/" method='post' class="create">
+        <h1>{{user.firstName}} log your current symptom(s) level(s)</h1>
+        <form action="/mood/create/" method='post' class="create">
             {% csrf_token %}
             <section>
-                <label for="name">Medication Name</label>
-                <input type="text" name="name">
+                <label for="tag">Title/Description</label>
+                <input type="text" name="tag">
             </section>
             <section>
-                <label for="frew">Frequency Taken</label>
-                <input type="text" name="freq">
+                <label for="date">Date</label>
+                <input type="datetime-local" name="date">
             </section>
-            <button>Add Medication</button>
-        </form>
-        <button type="button" class="collapsible">Current Medications Created</button>
-        <div class="altcontent">
-                {% for med in meds %}
-                <div class="mobileBox">
-                    {% for upload in uploads %}
-                        {% if upload.medication_id == med.id %}
-                            <img src="/../media/{{upload.image}}" alt="{{med.name}}" class="desktop">
+            <section>
+                <i class="material-icons" id="emoji">
+                    sentiment_satisfied
+                </i>
+                <input type="range" id="mood" name="mood" min="0" max="4" value="2">
+            </section>
+            <section>
+                <label for="symptom">Symptom</label>
+                <select name="symptom">
+                    {% for symptom in symptoms %}
+                        <option value="{{symptom.id}}">{{symptom.symptom}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <section>
+                <label for="log">Chose log to add this to</label>
+                <select name="log">
+                    {% for log in logs %}
+                        {% if log.author_id == user.id %}
+                            <option value="{{log.id}}">{{log.day}} {{log.title}}</option>
                         {% endif %}
                     {% endfor %}
-                    <div class="column">
-                        <h3>{{med.name}}</h3>
-                    </div>
-                </div>
-                {% endfor %}
-        </div>
+                </select>
+            </section>
+            <section>
+                <input type="hidden" name="user_id" value='{{user.id}}'>
+            </section>
+            <button disabled>Add Symptom Record</button>
+        </form>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}
+    {% endfor %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src='{% static "js/scripts.js"%}'></script>
