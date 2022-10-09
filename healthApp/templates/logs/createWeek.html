@@ -43,21 +43,33 @@
             <iframe src="//widget.calendarlabs.com/v1/calendar.php?cid=1001&ver=1.2&uid=4034957853&c=8&l=en&cbg=F9E3FA66&cfg=000000&hfg=000000&hfg1=000000&ct=1&cb=1&cbc=F9E3FA&cf=verdana&cp=bottom&sw=0&hp=t&ib=0&ibc=&i=" width="170" height="155" marginwidth=0 marginheight=0 frameborder=no scrolling=no allowtransparency='true'>Loading...</iframe>
             <h4>Calendar Widget by <a href="https://www.calendarlabs.com/" target="_blank" rel="nofollow">CalendarLabs</a></h4>
         </div>
-        <button type="button" class="collapsible">Weeks You've Created</button>
-        <div class="altcontent">
-            <table>
-                <tr>
-                    <th>Week</th>
-                </tr>
-                {% for week in weeks %}
-                {% if week.writer_id == user.id %}
+        <div class="mobile">
+            <button type="button" class="collapsible">Weeks You've Created</button>
+            <div class="altcontent">
+                <table>
                     <tr>
-                        <td><a href="/week/{{week.id}}/view/">{{week.title}}</a></td>
+                        <th>Week</th>
                     </tr>
-                {% endif %}
-                    
+                    {% for week in weeks %}
+                    {% if week.writer_id == user.id %}
+                        <tr>
+                            <td><a href="/week/{{week.id}}/view/">{{week.title}}</a></td>
+                        </tr>
+                    {% endif %}
+                        
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="desktop">
+            <button type="button" class="collapsible collapsible-desktop" disabled>Weeks You've Created</button>
+            <div class="altcontent altcontent-desktop">
+                {% for week in weeks %}
+                    {% if week.writer_id == user.id %}
+                        <a href="/week/{{week.id}}/view/">{{week.title}}</a>
+                    {% endif %}
                 {% endfor %}
-            </table>
+            </div>
         </div>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}

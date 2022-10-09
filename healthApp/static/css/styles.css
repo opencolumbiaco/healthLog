@@ -180,6 +180,9 @@ body main {
   align-items: center;
   width: 95%;
 }
+body main #hideDrForm {
+  display: none;
+}
 body main .row {
   display: flex;
   flex-direction: row;
@@ -431,6 +434,13 @@ body main .mobile {
   justify-content: center;
   align-items: center;
 }
+body main .copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
 body footer {
   display: flex;
   flex-direction: column;
@@ -456,6 +466,37 @@ body footer p {
   }
   body main .desktop {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+  body main .desktop .altcontent-desktop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  body main .desktop .altcontent-desktop a {
+    margin: 1em;
+    border: groove 5px #454C49;
+    padding: 2em;
+    font-size: 1.2em;
+  }
+  body main .desktop .altcontent-desktop .mobileBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px groove #454C49;
+    margin: 1em;
+    padding: 0.5em;
+  }
+  body main .desktop .altcontent-desktop .mobileBox img {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 0.2em;
   }
   body main .desktop tr td img {
     border-radius: 50%;
@@ -465,6 +506,19 @@ body footer p {
     color: #D13334;
     font-weight: 900;
   }
+  body main .desktop .collapsible-desktop {
+    width: 75%;
+  }
+  body main .desktop .desktopBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+  body main .desktop .desktopBox .desktop-table {
+    width: 95%;
+  }
   body main .mobile {
     display: none;
   }
@@ -473,6 +527,14 @@ body footer p {
   }
   body main .column .mobile {
     display: none;
+  }
+  body main .desktop-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
   }
   body main .altcontent .mobileBox .desktop {
     display: flex;

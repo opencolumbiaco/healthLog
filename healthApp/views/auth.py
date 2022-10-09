@@ -76,8 +76,12 @@ def profileDash(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
+        users = User.objects.all().values()
+        providers = Patient.objects.all().values()
         context = {
             'user': user,
+            'users': users,
+            'providers': providers,
         }
         return render(request, 'profile/profile.html', context)
 
@@ -166,7 +170,12 @@ def messagePortal(request):
     pass
 
 def addDoctor(request):
-    pass
+    Patient.objects.create(
+        patient_id = request.POST['patient'],
+        provider_id = request.POST['provider'],
+    )
+    messages.error(request, "You have added your Provider")
+    return redirect('/user/dashboard/')
 
 def updateToProvider(request, user_id):
     toUpdate=User.objects.get(id=user_id)

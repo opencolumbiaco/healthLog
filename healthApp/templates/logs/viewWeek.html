@@ -28,6 +28,7 @@
     </div>
     <main>
         <h1>{{week.title}}</h1>
+        <h2>Your Logs for this week</h2>
         <div class="mobile">
             {% for log in logs %}
                 {% if log.author_id == user.id %}
@@ -39,8 +40,102 @@
                 {% endif %}
             {% endfor %}
         </div>
-
-
+        <div class="desktop">
+            {% for log in logs %}
+                {% if log.author_id == user.id %}
+                    {% if log.week_id == week.id %}
+                        <div class="desktopBox">
+                            <h3><a href="/log/{{log.id}}/view/">{{log.day}} {{log.title}}</a></h3>
+                            <table class="desktop-table">
+                                <tr>
+                                    <th colspan="2">Moods / Symptoms</th>
+                                </tr>
+                                <tr>
+                                    <th>Mood</th>
+                                    <th>Symptom</th>
+                                </tr>
+                                {% for mood in moods %}
+                                    {% if mood.log_id == log.id %}
+                                        <tr>
+                                            <td>
+                                                {% if mood.mood == 0 %}
+                                                    <img src="{% static 'images/00.PNG'%}" alt="Bad Mood">
+                                                {% elif mood.mood == 1 %}
+                                                    <img src="{% static 'images/01.PNG'%}" alt="Poor Mood">
+                                                {% elif mood.mood == 2 %}
+                                                    <img src="{% static 'images/02.PNG'%}" alt="Ok Mood">
+                                                {% elif mood.mood == 3 %}
+                                                    <img src="{% static 'images/03.PNG'%}" alt="Good Mood">
+                                                {% else %}
+                                                    <img src="{% static 'images/04.PNG'%}" alt="Great Mood">
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% for symptom in symptoms %}
+                                                    {% if mood.symptom_id == symptom.id %}
+                                                        {{symptom.symptom}}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                            <table class="desktop-table">
+                                <tr>
+                                    <th colspan="3">Medications</th>
+                                </tr>
+                                <tr>
+                                    <th>Medication</th>
+                                    <th>Dose</th>
+                                    <th>Time Taken</th>
+                                </tr>
+                                {% for med in meds %}
+                                    {% if med.day_id == log.id %}
+                                        <tr>
+                                            <td>
+                                                {% for theMed in theMeds %}
+                                                    {% if med.medication_id == theMed.id %}
+                                                       {{theMed.name}} 
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            <td>{{med.dose}}</td>
+                                            <td>{{med.when}}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                            {% if user.profile.diabetic == 1 %}
+                                <table class="desktop-table">
+                                    <tr>
+                                        <th colspan="2">Sugars</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Time Checked</th>
+                                        <th>Level</th>
+                                    </tr>
+                                    {% for sugar in sugars %}
+                                        {% if sugar.note_id == log.id %}
+                                            <tr>
+                                                <td>{{sugar.time}}</td>
+                                                {% if sugar.level <= 100 %}
+                            <td class='red'>{{sugar.level}}  - Low</td>
+                        {% elif sugar.level >= 175 %}
+                            <td class="red">{{sugar.level}} - High</td>
+                        {% else %}
+                            <td>{{sugar.level}}</td>
+                        {% endif %}
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
         <h2>Update base week title</h2>
         <form action="/week/{{week.id}}/update/" method='post'>
             {% csrf_token %}

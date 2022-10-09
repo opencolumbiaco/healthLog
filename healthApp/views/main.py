@@ -168,6 +168,7 @@ def viewWeek(request, week_id):
         symptoms = Symptom.objects.all().values()
         meds = Taken.objects.all().values()
         sugars = Sugar.objects.all().values()
+        theMeds = Medication.objects.all().values()
         context = {
                 'user': user,
                 'week': week,
@@ -176,6 +177,7 @@ def viewWeek(request, week_id):
                 'symptoms': symptoms,
                 'meds': meds,
                 'sugars': sugars,
+                'theMeds': theMeds,
             }
         return render(request, 'logs/viewWeek.html', context)
 

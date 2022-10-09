@@ -40,6 +40,14 @@ function auth() {
     }
 }
 
+function copyInfo() {
+    var copyText = document.querySelector('#drInfo')
+    console.log("the copied text:", copyText)
+    copyText.select()
+    copyText.setSelectionRange(0, 999999)
+    navigator.clipboard.writeText(copyText.value)
+    alert("You have copied the text to your clipboard:", copyText.value)
+}
 
 
 $(document).ready(function(){
@@ -80,6 +88,11 @@ $(document).ready(function(){
     })
     $('#showAllSugars').click(function(){
         $('#hideAllSugars').animate( {
+            width: 'toggle'
+        })
+    })
+    $('#showDrForm').click(function(){
+        $('#hideDrForm').animate( {
             width: 'toggle'
         })
     })
