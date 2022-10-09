@@ -17,14 +17,6 @@ INSERT INTO healthApp_symptom (symptom, info) VALUES
 ('Aches and Pains', 'Just general aches and pains'),
 ('Other', 'Anything currently not listed');
 
-## #2 Enter into the healthApp_mediation table if on MAIN BRANCH ONLY
-
-INSERT INTO healthApp_medication (name, dose, freq) VALUES
-('Metformin', '500mg', 'Daily'),
-(2, 'Potassium', '20MEQ', 'Daily'),
-(3, 'Lantus', 'Varies', 'Daily'),
-(4, 'NovoLog', 'Varies', 'Daily');
-
 ## #2 Enter into the healthApp_mediation table if on ADDINGPROVIDERACCESS BRANCH ONLY
 
 INSERT INTO healthApp_medication (name, freq) VALUES
@@ -57,13 +49,6 @@ INSERT INTO healthApp_sugar (time, level, note_id, owner_id) VALUES
 ('2022-10-05 01:42:00.000000', 247, 2, 3),
 ('2022-10-05 03:39:00.000000', 76, 2, 3),
 ('2022-10-05 04:39:00.000000', 71, 2,3),
-
-## #7 Enter into the healthApp_taken table if on MAIN BRANCH ONLY
-
-INSERT INTO healthApp_taken (when, day_id, medication_id, member_id) VALUES
-('2022-10-04 11:04:00.000000', 1, 1, 1),
-('2022-10-05 01:42:00.000000', 2, 3, 3),
-('2022-10-05 01:42:00.000000', 2, 4, 3);
 
 ## #7 Enter into the healthApp_taken table if on ADDINGPROVIDERACCESS BRANCH ONLY
 
