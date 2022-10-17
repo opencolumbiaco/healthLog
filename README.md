@@ -10,16 +10,18 @@ Where you can log things concerning your mental health as well as regular health
 - users can add as many medications to thier day as they want
 - Example account - an account simply for non users to view examples of what they can do
 - Provider access to allow a designated DR to see your logs
+- Chat bot to facilitate getting the provider added with the correct levels (hosted by Tawk.to)
+- Ability to download your information to take to doctor (Beta Testing)
 
 ## Current In progress
+- Ability to download your information to take to your doctor.
+    - Still working on styling of pdf
+    - In beta testing to check for errors
+- Messageing systemm between provider and patient (all internal to the app (currently on providerAccess branch)
 
-- Chat bot to facilitate getting the provider added with the correct levels
 
 ## Current backlog
 These items are in the wings to be added
-- Ability to download your information to take to your doctor.
-    - May start out with only printing the last 7 days
-    - Plan to have a way to chose the weeks you wish to download
 - change to react native front end for mobile app creation
 
 ## Potential additions from already developed applications
