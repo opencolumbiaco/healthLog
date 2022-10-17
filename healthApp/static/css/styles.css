@@ -347,14 +347,23 @@ body main .create section {
 body main .calendar {
   margin: 1em;
 }
-body main .desktop {
+body main .desktop,
+body main .desktop700 {
   display: none;
 }
-body main .desktop form {
+body main .desktop form,
+body main .desktop700 form {
   font-size: 1em;
 }
-body main .desktop form button {
+body main .desktop form button,
+body main .desktop700 form button {
   font-size: 0.8em;
+}
+body main .desktop #pcp,
+body main .desktop700 #pcp,
+body main .desktop #mental,
+body main .desktop700 #mental {
+  display: none;
 }
 body main .mobile {
   display: flex;
@@ -543,5 +552,39 @@ body footer p {
   body main .altcontent .mobileBox .column {
     padding: 1em;
     margin: 1em;
+  }
+}
+@media only screen and (min-width: 850px) {
+  body main .desktop700 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main .desktop700 .printArea {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    text-align: center;
+    padding: 1em;
+  }
+  body main .desktop700 .printArea .printHr {
+    height: 3px;
+    width: 600px;
+    margin: 1em 0;
+    border: 2px solid #000;
+  }
+  body main .desktop700 .printArea .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main .desktop700 .printArea .column .weekData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
   }
 }

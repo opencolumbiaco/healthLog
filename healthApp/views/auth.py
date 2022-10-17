@@ -141,6 +141,17 @@ def updateDiabetic(request, user_id):
     messages.error(request, 'Updated Diabetic Question')
     return redirect('/user/dashboard/')
 
+def generatePrint(request, user_id):
+    if 'user_id' not in request.session:
+        messages.error(request, "You need to be logged in")
+        return redirect('/')
+    else:
+        user = User.objects.get(id=request.session['user_id'])
+        context = {
+            'user': user,
+        }
+        return render(request, 'profile/generatePrint.html', context)
+
 def profileData(request, user_id):
     if 'user_id' not in request.session:
         messages.error(request, "You need to be logged in")

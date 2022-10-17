@@ -3,6 +3,7 @@ from django.db.models.fields import BooleanField, CharField
 from django.db.models.signals import post_save
 from django.db.models.deletion import CASCADE
 from healthApp.key import *
+import datetime
 
 class UserManager(models.Manager):
     def validate(self, form):
@@ -15,6 +16,12 @@ class UserManager(models.Manager):
             errors['email'] = 'Email is already registered'
         if form['password'] != form['confirm']:
             errors['password'] = 'Passwords do not match'
+        return errors
+
+    def updatePassword(self, form):
+        errors = {}
+        if form['password'] != form['confirm']:
+            errors['password'] = "Passwords do not match"
         return errors
 
     def updateUsername(self, form):
@@ -36,6 +43,12 @@ class UserManager(models.Manager):
         if form['REGCODE'] != PROVIDERKEY:
             errors['REGCODE'] = 'Invalid Provider Registration Code'
         return errors
+    
+    def updateNurse(self, form):
+        errors = {}
+        if form['REGCODE'] != CAREGIVERKEY:
+            errors['REGCODE'] = 'Invalid CareGiver or Nurse Code'
+        return errors
 
     def updateAdmin(self, form):
         errors = {}
@@ -53,8 +66,10 @@ class User(models.Model):
 
     objects = UserManager()
 
+    loggedOn = models.DateTimeField(auto_now=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         return self.username
@@ -81,6 +96,7 @@ class Symptom(models.Model):
 
 class Medication(models.Model):
     name = models.CharField(max_length=255)
+    freq = models.CharField(max_length=255, default='daily')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -99,7 +115,6 @@ def create_medication_upload(sender, instance, created, **kwargs):
 
 class Week(models.Model):
     title = models.CharField(max_length=255)
-    freq = models.CharField(max_length=255, default='daily')
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     writer = models.ForeignKey(User, related_name='theWriter', on_delete=CASCADE)
@@ -153,6 +168,7 @@ class Patient(models.Model):
 
 class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
+    read = models.DateTimeField(auto_now=True)
     toUser = models.ForeignKey(User, related_name='userTo', on_delete=CASCADE)
     fromUser = models.ForeignKey(User, related_name='userFrom', on_delete=CASCADE)
     comment = models.TextField()
