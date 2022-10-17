@@ -96,3 +96,36 @@
         }
     }
 }
+
+@media @850 {
+    body {
+        main {
+            .desktop700 {
+                .flexcolumn();
+
+                .printArea {
+                    background-color: @printbg;
+                    color: @printfont;
+                    border: @printborder;
+                    text-align: center;
+                    padding: 1em;
+
+                    .printHr {
+                        height: 3px;
+                        width: 600px;
+                        margin: 1em 0;
+                        border: @printborder;
+                    }
+                    .column {
+                        .flexcolumn();
+
+                        .weekData {
+                            .flexcolumn();
+                            border: @printborder;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
