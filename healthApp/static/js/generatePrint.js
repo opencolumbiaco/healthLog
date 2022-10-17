@@ -29,6 +29,7 @@ async function pcpData() {
     var theUser = document.pcp.theUser.value
     var numWeeks = document.pcp.numWeeks.value
 
+    // var response = await fetch(`https://healthLog.opencolumbiaco.org/json/${theUser}/pcpData/`)
     var response = await fetch(`http://127.0.0.1:8000/json/${theUser}/pcpData/`)
     var data = await response.json()
     console.log('all the data', data)
@@ -211,6 +212,7 @@ async function pcpData() {
 async function mentalData() {
     var theUser = document.mental.theUser.value
     var numWeeks = document.mental.numWeeks.value 
+    // var response = await fetch(`https://healthLog.opencolumbiaco.org/json/${theUser}/mentalData/`)
     var response = await fetch(`http://127.0.0.1:8000/json/${theUser}/mentalData/`)
     var data = await response.json()
     console.log('all the data', data)
@@ -304,10 +306,20 @@ async function mentalData() {
                         }
                     }
                 }
-                var p = document.createElement('p')
+                var contentTable = document.createElement('table')
+                var contentHeadRow = document.createElement('tr')
+                var contentRow = document.createElement('tr')
+                var contentHeader = document.createElement('th')
+                var contentHeadText = document.createTextNode('Notes Taken')
+                contentHeader.appendChild(contentHeadText)
+                contentHeadRow.appendChild(contentHeader)
+                contentTable.appendChild(contentHeadRow)
+                var contentData = document.createElement('td')
                 var pText = document.createTextNode(logs[b].content)
-                p.appendChild(pText)
-                div.appendChild(p)
+                contentData.appendChild(pText)
+                contentRow.appendChild(contentData)
+                contentTable.appendChild(contentRow)
+                div.appendChild(contentTable)
 
             }
         }
@@ -328,5 +340,5 @@ $('#printButton').click(function () {
         'width': 800,
         'elementHandlers': specialElementHandlers
     });
-    doc.save('sample_file.pdf');
+    doc.save('healthLogData.pdf');
 });

@@ -199,5 +199,9 @@ table {
     justify-content: center;
     align-items: center;
     border: 2px solid #000;
+    width: 600px;
+  }
+  body main .desktop700 .printArea .column .weekData p {
+    width: 550px;
   }
 }
