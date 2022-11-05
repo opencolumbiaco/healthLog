@@ -132,3 +132,11 @@ class Sugar(models.Model):
     note = models.ForeignKey(Log, related_name='theNote',on_delete=CASCADE, blank=True)
     owner = models.ForeignKey(User, related_name='theOwner', on_delete=CASCADE)
 
+# Food log table
+class Food(models.Model):
+    foodsLogged = models.TextField(null=True)
+    totalCalories = models.IntegerField()
+    date = models.DateTimeField()
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+
