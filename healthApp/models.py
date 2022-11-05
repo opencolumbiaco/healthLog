@@ -138,5 +138,5 @@ class Food(models.Model):
     totalCalories = models.IntegerField()
     date = models.DateTimeField()
     createdAt = models.DateTimeField(auto_now_add=True)
-    updatedAt= models.DateTimeField(auto_now=True)
+    updatedAt = models.DateTimeField(auto_now=True)
 
