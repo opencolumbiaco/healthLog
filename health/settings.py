@@ -35,6 +35,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['healthLog.opencolumbiaco.org']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://healthLog.opencolumbiaco.org",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# ]
+
 
 # Application definition
 
@@ -45,10 +53,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'healthApp.apps.HealthappConfig'
+    'healthApp.apps.HealthappConfig',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -130,6 +140,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

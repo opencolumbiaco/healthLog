@@ -4,14 +4,19 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from healthApp.models import *
 from datetime import datetime
+from rest_framework import viewsets
+from healthApp.serializers import *
 
 
 status = {
     "Api Status": "Running"
 }
 
-def apiBase(request):
+def jsonBase(request):
     return JsonResponse(status, content_type="application/json")
+
+# class JsonAllDataViewSet(viewsets.ModelViewSet):
+#     serializer_class = 
 
 def jsonAllData(request):
     users = list(User.objects.all().values())

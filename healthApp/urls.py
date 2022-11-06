@@ -85,10 +85,21 @@ urlpatterns = [
     path('theAdmin/user/<int:user_id>/makeProvider/', views.makeProvider),
     path('theAdmin/user/<int:user_id>/makeSuperAdmin/', views.makeSuperAdmin),
     # JSON
-    path('json/', views.apiBase),
+    path('json/', views.jsonBase),
     path('json/data/', views.jsonAllData),
     path('json/<int:user_id>/pcpData/', views.jsonPcpData),
     path('json/<int:user_id>/mentalData/', views.jsonMentalData),
+    # API Routes
+    # path('api/', views.api),
+    # path('api/auth/login/', views.apiLogin),
+    # path('api/users/', views.getUsers),
+    # path('api/symptoms/', views.getSymptoms),
+    # path('api/medications/', views.getMedications),
+    # path('api/weeks/', views.getWeeks),
+    # path('api/logs/', views.getLogs),
+    # path('api/moods/', views.getMoods),
+    # path('api/taken/', views.getTaken),
+    # path('api/sugars/', views.getSugars),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

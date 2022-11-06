@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from healthApp import views as app_views
 from django.contrib.auth import views as auth_views
+from routers import router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('healthApp.urls')),
+    # path('json/', include((router.urls, 'healthApp'), namespace='healthAppJson')),
+    path('api/', include((router.urls, 'healthApp'), namespace='healthApp'))
+    
 ]

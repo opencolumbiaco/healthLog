@@ -66,7 +66,7 @@ def addMedication(request):
     else:
         user = User.objects.get(id=request.session['user_id'])
         meds = Medication.objects.all().values()
-        logs = Log.objects.all().values()
+        logs = Log.objects.all().order_by('-updatedAt')
         context = {
             'user': user,
             'meds': meds,
@@ -80,7 +80,7 @@ def addSugar(request):
         return redirect('/')
     else:
         user = User.objects.get(id=request.session['user_id'])
-        logs = Log.objects.all().values()
+        logs = Log.objects.all().order_by('-updatedAt')
         context = {
             'user': user,
             'logs': logs,
