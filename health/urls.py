@@ -18,7 +18,11 @@ from django.urls import path, include
 from healthApp import views as app_views
 from django.contrib.auth import views as auth_views
 
+from django.conf.urls import __all__
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('healthApp.urls')),
+    path('food/', app_views.ReactView.as_view(), name='FoodLog')
 ]
