@@ -70,8 +70,14 @@
             </section>
             <button>Update</button>
         </form>
-        <form action="" method="post">
+        <h3>To get the provider code please use the chat bot to the right to create a ticket - Once verified you will receive the code</h3>
+        <form action="/user/{{user.id}}/updateProvider/" method="post" class="create">
             {% csrf_token %}
+            <section>
+                <label for="REGCODE">Please enter the Provider code</label>
+                <input type="text" name="REGCODE">
+            </section>
+            <button>Register as Provider</button>
         </form>
         <form action="">
             {% csrf_token %}
