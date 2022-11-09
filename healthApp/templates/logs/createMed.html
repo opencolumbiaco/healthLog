@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/default.jpg' %}">
     <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
     <link rel="stylesheet" href="{% static 'css/styles.css'%}">
-    <title>Health Log - {{log.title}}</title>
+    <title>Health & Mental Well-Being Log</title>
 </head>
 <body>
     <header>
@@ -27,28 +27,36 @@
         {% endif %}
     </div>
     <main>
-        <h1>{{week.title}}</h1>
-        <div class="mobile">
-            {% for log in logs %}
-                {% if log.author_id == user.id %}
-                    {% if log.week_id == week.id %}
-                        <div class="mobileBox">
-                            <h3><a href="/log/{{log.id}}/view/">{{log.day}} {{log.title}}</a></h3>
-                        </div>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
-
-
-        <h2>Update base week title</h2>
-        <form action="/week/{{week.id}}/update/" method='post'>
+        <form action="/medication/log/create/" method='post' class="create">
             {% csrf_token %}
             <section>
-                <label for="title">Title</label>
-                <input type="text" name="title" value='{{week.title}}'>
+                <label for="when">Time Taken</label>
+                <input type="datetime-local" name="when">
             </section>
-            <button>Update Week</button>
+            <section>
+                <label for="medication">Medication</label>
+                <select name="medication">
+                    {% for med in meds %}
+                        <option value="{{med.id}}">{{med.name}} {{med.dose}} {{med.freq}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <section>
+                <label for="dose">What dose did you take</label>
+                <input type="text" name="dose">
+            </section>
+            <section>
+                <label for="day">Chose Log to add this to</label>
+                <select name="day">
+                    {% for log in logs %}
+                        {% if log.author_id == user.id %}
+                            <option value="{{log.id}}">{{log.day}} {{log.title}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </section>
+            <input type="hidden" name="member" value="{{user.id}}">
+            <button>Log Medication</button>
         </form>
     </main>
     {% block footer %} {% include 'footer.html' %} {% endblock footer %}

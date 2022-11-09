@@ -40,6 +40,14 @@ function auth() {
     }
 }
 
+function copyInfo() {
+    var copyText = document.querySelector('#drInfo')
+    console.log("the copied text:", copyText)
+    copyText.select()
+    copyText.setSelectionRange(0, 999999)
+    navigator.clipboard.writeText(copyText.value)
+    alert("You have copied the text to your clipboard:", copyText.value)
+}
 
 
 $(document).ready(function(){
@@ -83,4 +91,19 @@ $(document).ready(function(){
             width: 'toggle'
         })
     })
+    $('#showDrForm').click(function(){
+        $('#hideDrForm').animate( {
+            width: 'toggle'
+        })
+    })
 })
+
+// var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+// (function(){
+// var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+// s1.async=true;
+// s1.src='https://embed.tawk.to/633ccb1654f06e12d898766e/1geioe0ce';
+// s1.charset='UTF-8';
+// s1.setAttribute('crossorigin','*');
+// s0.parentNode.insertBefore(s1,s0);
+// })();

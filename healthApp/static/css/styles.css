@@ -144,12 +144,44 @@ body .welcome {
   border-radius: 10%;
   padding: 1em;
 }
+body .welcome .contribs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body .welcome .contribs .contrib {
+  margin: 1em;
+  padding: 0.5em;
+  background-color: #80BDA2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20%;
+  box-shadow: 5px 5px;
+}
+body .welcome .contribs .contrib a {
+  color: #454C49;
+  text-decoration: underline;
+  margin: 1em;
+  padding: 0.5em;
+}
+body .welcome .contribs .contrib .contribImg {
+  max-width: 100px;
+  margin: 0.3em;
+  border-radius: 20%;
+}
 body main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 95%;
+}
+body main #hideDrForm {
+  display: none;
 }
 body main .row {
   display: flex;
@@ -315,14 +347,23 @@ body main .create section {
 body main .calendar {
   margin: 1em;
 }
-body main .desktop {
+body main .desktop,
+body main .desktop700 {
   display: none;
 }
-body main .desktop form {
+body main .desktop form,
+body main .desktop700 form {
   font-size: 1em;
 }
-body main .desktop form button {
+body main .desktop form button,
+body main .desktop700 form button {
   font-size: 0.8em;
+}
+body main .desktop #pcp,
+body main .desktop700 #pcp,
+body main .desktop #mental,
+body main .desktop700 #mental {
+  display: none;
 }
 body main .mobile {
   display: flex;
@@ -402,6 +443,13 @@ body main .mobile {
   justify-content: center;
   align-items: center;
 }
+body main .copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
 body footer {
   display: flex;
   flex-direction: column;
@@ -427,12 +475,120 @@ body footer p {
   }
   body main .desktop {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+  body main .desktop .altcontent-desktop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  body main .desktop .altcontent-desktop a {
+    margin: 1em;
+    border: groove 5px #454C49;
+    padding: 2em;
+    font-size: 1.2em;
+  }
+  body main .desktop .altcontent-desktop .mobileBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 5px groove #454C49;
+    margin: 1em;
+    padding: 0.5em;
+  }
+  body main .desktop .altcontent-desktop .mobileBox img {
+    max-width: 100px;
+    border-radius: 50%;
+    margin: 0.2em;
   }
   body main .desktop tr td img {
     border-radius: 50%;
     max-width: 100px;
   }
+  body main .desktop tr .red {
+    color: #D13334;
+    font-weight: 900;
+  }
+  body main .desktop .collapsible-desktop {
+    width: 75%;
+  }
+  body main .desktop .desktopBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+  body main .desktop .desktopBox .desktop-table {
+    width: 95%;
+  }
   body main .mobile {
     display: none;
+  }
+  body main .column .desktop {
+    display: flex;
+  }
+  body main .column .mobile {
+    display: none;
+  }
+  body main .desktop-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  body main .altcontent .mobileBox .desktop {
+    display: flex;
+    max-width: 100px;
+  }
+  body main .altcontent .mobileBox .column {
+    padding: 1em;
+    margin: 1em;
+  }
+}
+@media only screen and (min-width: 850px) {
+  body main .desktop700 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main .desktop700 .printArea {
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #000;
+    text-align: center;
+    padding: 1em;
+  }
+  body main .desktop700 .printArea .printHr {
+    height: 3px;
+    width: 600px;
+    margin: 1em 0;
+    border: 2px solid #000;
+  }
+  body main .desktop700 .printArea .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main .desktop700 .printArea .column .weekData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    width: 600px;
+  }
+  body main .desktop700 .printArea .column .weekData p {
+    width: 550px;
   }
 }

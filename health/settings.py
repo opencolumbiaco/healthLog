@@ -35,6 +35,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 # ALLOWED_HOSTS = ['healthLog.opencolumbiaco.org']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://healthLog.opencolumbiaco.org",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# ]
+
 
 # Application definition
 
@@ -67,11 +75,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 # CORS_ORIGIN_ALLOW_ALL=True
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
-        ]
-    }
+# REST_FRAMEWORK = {
+#    'DEFAULT_PERMISSION_CLASSES': [
+#        'rest_framework.permissions.AllowAny'
+#        ]
+#    }
 
 
 ROOT_URLCONF = 'health.urls'
@@ -157,6 +165,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
