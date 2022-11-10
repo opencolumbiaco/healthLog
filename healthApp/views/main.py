@@ -233,16 +233,27 @@ def deleteMood(request, mood_id):
 
 class ReactView(APIView):
     serializer_class = ReactSerializer
-    # data is not being output in the browser, needs fixing - JH 07Nov22
+    # data gets passed into object for each item in the Food.Objects.all queryset
+    # fields in data must match fields in model and serializer files
     def get(self, request):
         data = [
-            {'foodsLogged': data.foodsLogged,
-            'totalCalories': data.totalCalories,
-            'date': data.date
+            {'foodsLogged': item.foodsLogged,
+            'totalCalories': item.totalCalories,
+            'date': item.date,
+            'created': item.created,
+            'updated': item.updated
             }
-            for data in Food.objects.all()
+            for item in Food.objects.all()
         ]
+        
         return Response(data)
+
+    # post function adds form to REST framework on localhost 8000
+    def post(self, request):
+        serializer = ReactSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
 
 
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from . models import *
+from healthApp.models import *
 
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
