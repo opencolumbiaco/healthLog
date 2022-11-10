@@ -62,10 +62,40 @@ body {
         max-width: 95%;
         border-radius: 10%;
         padding: 1em;
+
+        .contribs {
+            .flexrow();
+            flex-wrap: wrap;
+
+            .contrib {
+                margin: 1em;
+                padding: .5em;
+                background-color: @green;
+                .flexcolumn();
+                border-radius: 20%;
+                box-shadow: 5px 5px;
+
+                a {
+                    color: @grey;
+                    text-decoration: underline;
+                    margin: 1em;
+                    padding: .5em;
+                }
+                .contribImg {
+                    max-width: 100px;
+                    margin: .3em;
+                    border-radius: 20%;
+                }
+            }
+        }
     }
     main {
         .flexcolumn();
         width: 95%;
+
+        #hideDrForm {
+            display: none;
+        }
 
         .row {
             .flexrow();
@@ -216,7 +246,7 @@ body {
         .calendar {
             margin: 1em;
         }
-        .desktop {
+        .desktop, .desktop700 {
             display: none;
                 form {
                     font-size: 1em;
@@ -224,6 +254,9 @@ body {
                     button {
                         font-size: .8em;
                     }
+                }
+                #pcp, #mental {
+                    display: none;
                 }
         }
         .mobile {
@@ -272,44 +305,14 @@ body {
                 margin: .5em;
             }
         }
-
-
-
-
-
-        // .form, form {
-        //     .flexcolumn();
-        //     font-size: 1.4em;
-
-        //     section {
-        //         .flexcolumn();
-        //     }
-        //     button {
-        //         font-size: .8em;
-        //     }
-        // }
-
         .mobile {
             .flexcolumn();
-
-            // form {
-            //     font-size: 1em;
-
-            //     button {
-            //         font-size: .8em;
-            //     }
-            // }
-
         }
-        // table {
-        //     tr {
-        //         td {
-        //             a {
-        //                 text-decoration: underline;
-        //             }
-        //         }
-        //     }
-        // }
+        .copy {
+            .flexcolumn();
+            margin: 1em;
+        }
+
     }
     footer {
         .flexcolumn();
